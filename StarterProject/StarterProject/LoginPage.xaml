@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StarterProject.LoginPage"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:ie="clr-namespace:IconEntry.FormsPlugin.Abstractions;assembly=IconEntry.FormsPlugin.Abstractions"
+             Title="Login">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="New" Icon="icon.png" Priority="0" Order="Primary" Clicked="Onclick"/>
+    </ContentPage.ToolbarItems>
+    <StackLayout Margin="10,10,10,0" >
+        <controls:CircleImage x:Name ="myLocalImage" WidthRequest="160" HeightRequest="160" HorizontalOptions="Center" Aspect="AspectFit"/>
+        <!--<Image x:Name ="myLocalImage" HorizontalOptions="Center"/>-->
+        <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="90*" />
+
+            </Grid.ColumnDefinitions>
+            <Image x:Name="Entry_UserIcon" Source="icon.png" Grid.Row="0" Grid.Column="0" />
+            <Entry x:Name="Entry_EMailAdress" Placeholder="Enter your E-Mail" Grid.Row="0" Grid.Column="1"  />
+
+        </Grid>
+        <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="90*" />
+
+            </Grid.ColumnDefinitions>
+            <Image x:Name="Entry_LockIcon" Source="lock.png" Grid.Row="0" Grid.Column="0" />
+            <Entry x:Name="Entry_Password" Placeholder="Enter your Password" Grid.Row="0" Grid.Column="1"  />
+
+        </Grid>
+        
+
+        
+        <Button x:Name="Btn_SignIn" Text="Sign In" TextColor="White" BackgroundColor="#7E6C94" Clicked="Btn_SignIn_Clicked"/>
+        <Button x:Name="Btn_SignUp" Text="Sign Up" TextColor="White" BackgroundColor="#FFAD26" Clicked="Btn_SignUp_Clicked"/>
+    </StackLayout>
+
+
+
+
+
+</ContentPage>

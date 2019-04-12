@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StarterProject.Register"
+             Title="Register">
+    <ContentPage.Content>
+        <StackLayout Margin="10,10,10,0" >
+            <Label Text="Sign Up" HorizontalOptions="CenterAndExpand" FontSize="24"/>
+            <Label Text="Who are you?" HorizontalOptions="CenterAndExpand"/>
+            <Entry x:Name="Entry_Username" Placeholder="Username"/>
+            <Entry x:Name="Entry_Email" Placeholder="Email"/>
+            <Entry x:Name="Entry_Password" Placeholder="Password"/>
+            <Entry x:Name="Entry_ConfirmPw" Placeholder="Confirm Password"/>
+            <Button x:Name="Btn_Signup" Text="Sign Up" TextColor="White" BackgroundColor="#FFAD26"/>
+            <Label x:Name="Label_AlreadySigned"  Text="Already have an account?" HorizontalOptions="CenterAndExpand"/>
+            <Button x:Name="Btn_GoToSignin" Text="Sign In" TextColor="White" BackgroundColor="#7E6C94" Clicked="Btn_GoToSignin_Clicked"/>
+        </StackLayout>
+
+
+
+
+    </ContentPage.Content>
+</ContentPage>
