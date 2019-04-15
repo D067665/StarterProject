@@ -16,7 +16,30 @@ namespace StarterProject
 		{
 			InitializeComponent ();
 		}
+        private async void Btn_Signup_Clicked(object sender, EventArgs e)
+        {
+            if (Entry_Password.Text.Equals(Entry_ConfirmPw.Text))
+            {
+                try
+                {
+                    string token = await DependencyService.Get<IRegister>().registerWithEmailPassword(Entry_Email.Text, Entry_Password.Text);
+                    Console.WriteLine(token);
+                    DependencyService.Get<IToast>().ShortAlert("Erfolgreich registriert!");
+                    Navigation.PushAsync(new LoginPage());
 
+                }
+                catch (Exception ex)
+                {
+                    DependencyService.Get<IToast>().LongAlert("Da ist wohl etwas schief gelaufen: " + ex.Message);
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            else
+            {
+                DependencyService.Get<IToast>().ShortAlert("Passwörter stimmen nicht überein!");
+            }
+
+        }
         private void Btn_GoToSignin_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new LoginPage());

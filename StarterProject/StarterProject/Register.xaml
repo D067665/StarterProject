@@ -11,7 +11,7 @@
             <Entry x:Name="Entry_Email" Placeholder="Email"/>
             <Entry x:Name="Entry_Password" Placeholder="Password"/>
             <Entry x:Name="Entry_ConfirmPw" Placeholder="Confirm Password"/>
-            <Button x:Name="Btn_Signup" Text="Sign Up" TextColor="White" BackgroundColor="#FFAD26"/>
+            <Button x:Name="Btn_Signup" Text="Sign Up" TextColor="White" BackgroundColor="#FFAD26" Clicked="Btn_Signup_Clicked"/>
             <Label x:Name="Label_AlreadySigned"  Text="Already have an account?" HorizontalOptions="CenterAndExpand"/>
             <Button x:Name="Btn_GoToSignin" Text="Sign In" TextColor="White" BackgroundColor="#7E6C94" Clicked="Btn_GoToSignin_Clicked"/>
         </StackLayout>
