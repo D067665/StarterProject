@@ -29,10 +29,24 @@ namespace StarterProject
 
         }
 
-        private void Btn_SignIn_Clicked(object sender, EventArgs e)
+        private async void Btn_SignIn_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new LandingPage());
+            Console.WriteLine("gesendet");
 
+            try
+            {
+                string token = await DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(Entry_EMailAdress.Text, Entry_Password.Text);
+                Console.WriteLine("token: " + token);
+            }
+            catch (Exception f)
+            {
+                Console.WriteLine("Exception: " + f);
+            }
+
+
+            /*string test = Entry_EMailAdress.Text;
+            string user = await IFirebaseAuthenticator.LoginWithEmailPassword(Entry_EMailAdress.Text, Entry_Password.Text); */
+            Navigation.PushAsync(new LandingPage());
         }
     }
 }

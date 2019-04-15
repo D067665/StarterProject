@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "634264019221",
+    "firebase_url": "https://sharezeug.firebaseio.com",
+    "project_id": "sharezeug",
+    "storage_bucket": "sharezeug.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:634264019221:android:85a93262e91b2905",
+        "android_client_info": {
+          "package_name": "com.companyname.StarterProject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbzePVSk30usfomby278GgVf7ByPB67Bk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "634264019221-7k893jdi9vgpf5ee5vin986gle2dtdcu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
