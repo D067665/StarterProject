@@ -8,22 +8,44 @@ using Xamarin.Forms.Maps;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Plugin.Geolocator;
+using StarterProject.ViewModel;
 
 namespace StarterProject
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MapOverviewPage : ContentPage
 	{
-		public MapOverviewPage ()
+        ToolViewModel tvm;
+        public MapOverviewPage ()
 		{
 			InitializeComponent ();
-           MyMap.MoveToRegion(
-                MapSpan.FromCenterAndRadius(
-                    new Position(37, -122), Distance.FromMiles(1)));
+            tvm = new ToolViewModel();
+            
+            BindingContext = tvm;
+
+            //placing Center of Map at own location
+            GetLocation(MyMap);
+            var pin = new Pin { };
+           
+            //place pin for each tool in Tool Model
+            foreach (var tool in tvm.Tools)
+            {
+                var toolLat = tool.ToolLat;
+                var toolLong = tool.ToolLong;
+                var position = new Position(toolLat, toolLong);
+                pin = new Pin { Type = PinType.SearchResult, Position = position, Label = tool.ToolDescription, BindingContext = tool };
+                
+                pin.Clicked += Pin_Clicked;
+                MyMap.Pins.Add(pin);
+            }
+            
+           
+            
+            
             
             
 
-            var position1 = new Position(36.8961, 10.1865);
+           /* var position1 = new Position(36.8961, 10.1865);
             var position2 = new Position(36.891, 10.181);
             var position3 = new Position(36.567, 10.897);
 
@@ -53,7 +75,41 @@ namespace StarterProject
 
             MyMap.Pins.Add(pin1);
             MyMap.Pins.Add(pin2);
-            MyMap.Pins.Add(pin3);
+            MyMap.Pins.Add(pin3);*/
+
+            
+        }
+        private static async void GetLocation(Map MyMap)
+        {
+            var locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 50;
+            var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(10000));
+            MyMap.MoveToRegion(
+               MapSpan.FromCenterAndRadius(
+                   new Position(position.Latitude, position.Longitude), Distance.FromKilometers(5)));
+
+
+        }
+
+        private async void Pin_Clicked(object sender, EventArgs eventArgs)
+        {
+            var selectedPin = sender as Pin;
+           
+
+
+            //returns binding context during runtime, how to access it here?
+            var tool = selectedPin.BindingContext;
+            
+            
+            
+            
+            var answer = await DisplayAlert(selectedPin?.Label, "Want to see details?", "See Details", "Close");
+            if (answer )
+            {
+                //musst access BindingContext to display
+                await Navigation.PushAsync(new LandingPage());
+                // await Navigation.PushAsync(new ToolDetailPage(details.ToolDescription, details.ToolLocation, details.ToolPrice, details.ToolImage));
+            }
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
