@@ -36,7 +36,7 @@ namespace StarterProject
         private async void ListSpeakers_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var details = e.Item as Tool;
-            await Navigation.PushAsync(new ToolDetailPage(details.ToolDescription, details.ToolLocation, details.ToolPrice, details.ToolImage));
+            await Navigation.PushAsync(new ToolDetailPage(details.ToolDescription, details.ToolLocation, details.ToolPrice, details.ToolImage, details.ToolLat, details.ToolLong, details.OwnerPhone));
 
         }
 

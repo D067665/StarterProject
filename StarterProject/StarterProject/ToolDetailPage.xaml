@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              x:Class="StarterProject.ToolDetailPage"
@@ -14,47 +15,49 @@
 
 
         </StackLayout>-->
-        <StackLayout Orientation="Vertical" Margin="10,10,10,10">
-            <Label x:Name="Label_ToolDescription" FontSize="30" HorizontalTextAlignment="Center" Margin="0,20,0,0" />
-            <Grid Margin="0,30,0,10" >
-                
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="35*"/>
-                    <RowDefinition Height="25*"/>
-                    <RowDefinition Height="40*"/>
+        
+            <StackLayout Orientation="Vertical" Margin="10,10,10,10">
+            <ScrollView Margin="10,10,10,0">
+                <StackLayout>
+                    <Label x:Name="Label_ToolDescription" FontSize="30" HorizontalTextAlignment="Center" Margin="0,10,0,0" />
+                    <Grid Margin="0,20,0,30" >
 
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50*"/>
-                    <ColumnDefinition Width="10*"/>
-                    <ColumnDefinition Width="40*"/>
-                </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40*"/>
+                            <RowDefinition Height="30*"/>
+                            <RowDefinition Height="30*"/>
 
-                <Image x:Name="Image_Tool" WidthRequest="100" HeightRequest="100" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"/>
-                <Image Source="location.png" Grid.Column="1" Grid.Row="1"/>
-                
-                <Label x:Name="Label_ToolLocation"  Grid.Column="2" Grid.Row="1"  FontSize="20"/>
-                <buttons:SfButton x:Name="Btn_ViewOnMap"
-                                      Text="View on Map" ShowIcon="True" ImageSource="map.PNG" MinimumHeightRequest="30" MinimumWidthRequest="30"
-                                      BackgroundColor="White" BorderColor="#7E6C94" TextColor="Black" BorderWidth="1"
-                                      Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="16"/>
-               
-            </Grid>
-            <StackLayout Margin="0,20,0,20" >
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="40*"/>
+                        </Grid.ColumnDefinitions>
 
+                        <Image x:Name="Image_Tool" WidthRequest="100" HeightRequest="100" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"/>
 
-                <Label x:Name="Label_Price" Text="Price" FontSize="25"/>
-                <Label x:Name="Label_ToolPrice"  FontSize="20" Margin="50,0,0,0"/>
-            </StackLayout>
-            <StackLayout Margin="0,0,0,20" >
-                <Label x:Name="Label_Availability" Text="Availability" FontSize="25"/>
-                <StackLayout Margin="50,0,0,0">
-                    <Label x:Name="Label_Startdate" Text="From 21.03.2019" FontSize="20"/>
-                    <Label x:Name="Label_Enddate" Text="Til 30.06.2019" FontSize="20"/>
+                        <Image Source="location.png" Grid.Column="1" Grid.Row="1"/>
+                        <Label x:Name="Label_ToolLocation"  Grid.Column="2" Grid.Row="1"  FontSize="20"/>
+                        <Image Source="price.png" Grid.Column="1" Grid.Row="2"/>
+                        <Label x:Name="Label_ToolPrice"  Grid.Column="2" Grid.Row="2" FontSize="20"/>
+
+                    </Grid>
+
+                    <StackLayout Margin="0,10,0,10" >
+                        <Label x:Name="Label_LocationMap" Text="The Location" FontSize="25"/>
+                        <maps:Map x:Name="MapDetail" MapType="Street" WidthRequest="125" HeightRequest="150"/>
+                    </StackLayout>
+                    <StackLayout Margin="0,0,0,20" >
+                        <Label x:Name="Label_Availability" Text="Availability" FontSize="25"/>
+                        <StackLayout Margin="50,0,0,0">
+                            <Label x:Name="Label_Startdate" Text="From 21.03.2019" FontSize="20"/>
+                            <Label x:Name="Label_Enddate" Text="Til 30.06.2019" FontSize="20"/>
+                        </StackLayout>
+
+                    </StackLayout>
                 </StackLayout>
-               
-            </StackLayout>
-            <Grid Margin="0,30,0,20">
+            </ScrollView>
+            <Grid Margin="0,10,0,10" BackgroundColor="White">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
@@ -63,11 +66,11 @@
                         <ColumnDefinition Width="50*"/>
                     </Grid.ColumnDefinitions>
 
-                <buttons:SfButton x:Name="Btn_GoToBooking"
+                    <buttons:SfButton x:Name="Btn_GoToBooking"
                                       Text="Book" ShowIcon="True" ImageSource="calender.PNG" MinimumHeightRequest="30" MinimumWidthRequest="30"
                                       BackgroundColor="White" BorderColor="#FFAD26" TextColor="Black" BorderWidth="1"
                                       Grid.Column="0" FontSize="16"  Clicked="Btn_GoToBooking_Clicked" />
-                
+
                     <buttons:SfButton x:Name="Btn_Call"
                                       Text="Call Owner" ShowIcon="True" ImageSource="phone.PNG" MinimumHeightRequest="30" MinimumWidthRequest="30"
                                       BackgroundColor="White" BorderColor="#7E6C94" TextColor="Black" BorderWidth="1"
@@ -76,13 +79,6 @@
                                       />
                     <!-- <Button x:Name="Btn_Call" Image="phone.PNG" BorderColor="#7E6C94" BackgroundColor="White" Grid.Column="1" WidthRequest="50" HeightRequest="50"/>-->
                 </Grid>
-
-
-
             </StackLayout>
-        
-
-
-
     </ContentPage.Content>
 </ContentPage>

@@ -116,7 +116,7 @@ namespace StarterProject
         {
             var locator = CrossGeolocator.Current;
             locator.DesiredAccuracy = 50;
-            var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(10000));
+            var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(100000));
 
             Lbl_Lat.Text = position.Latitude.ToString();
             Lbl_Long.Text = position.Longitude.ToString();
