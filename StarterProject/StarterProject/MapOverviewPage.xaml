@@ -10,7 +10,7 @@
             <maps:Map WidthRequest="320" HeightRequest="200"
                   x:Name="MyMap"
                   IsShowingUser="true"
-                  MapType="Hybrid" />
+                  MapType="Street" />
 
             <Button Text="Get my Location"
                 Clicked="Button_Clicked"/>

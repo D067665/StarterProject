@@ -94,8 +94,6 @@ namespace StarterProject
         private async void Pin_Clicked(object sender, EventArgs eventArgs)
         {
             var selectedPin = sender as Pin;
-           
-
 
             //returns binding context during runtime, how to access it here?
             var tool = (StarterProject.Model.Tool) selectedPin.BindingContext;
@@ -105,7 +103,6 @@ namespace StarterProject
             {
                 
                 //musst access BindingContext to display
-                //await Navigation.PushAsync(new LandingPage());
                 await Navigation.PushAsync(new ToolDetailPage(tool.ToolDescription, tool.ToolLocation, tool.ToolPrice, tool.ToolImage, tool.ToolLat, tool.ToolLong, tool.OwnerPhone));
             }
         }
