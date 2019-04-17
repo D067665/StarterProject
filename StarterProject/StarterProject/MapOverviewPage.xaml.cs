@@ -98,17 +98,15 @@ namespace StarterProject
 
 
             //returns binding context during runtime, how to access it here?
-            var tool = selectedPin.BindingContext;
-            
-            
-            
+            var tool = (StarterProject.Model.Tool) selectedPin.BindingContext;
             
             var answer = await DisplayAlert(selectedPin?.Label, "Want to see details?", "See Details", "Close");
-            if (answer )
+            if (answer)
             {
+                
                 //musst access BindingContext to display
-                await Navigation.PushAsync(new LandingPage());
-                // await Navigation.PushAsync(new ToolDetailPage(details.ToolDescription, details.ToolLocation, details.ToolPrice, details.ToolImage));
+                //await Navigation.PushAsync(new LandingPage());
+                await Navigation.PushAsync(new ToolDetailPage(tool.ToolDescription, tool.ToolLocation, tool.ToolPrice, tool.ToolImage, tool.ToolLat, tool.ToolLong, tool.OwnerPhone));
             }
         }
 
