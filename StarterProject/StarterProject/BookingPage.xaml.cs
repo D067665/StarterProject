@@ -22,16 +22,24 @@ namespace StarterProject
             
 		}
 
-        private void Calendar_SelectionChanged(object sender, Syncfusion.SfCalendar.XForms.SelectionChangedEventArgs e)
+        private void Calendar_SelectionChanged(Syncfusion.SfCalendar.XForms.SfCalendar sender, Syncfusion.SfCalendar.XForms.SelectionChangedEventArgs e)
         {
-            var pickedDate = e.DateAdded;
-            var pickedDateArray = pickedDate.ToArray();
-            var pickedDateString= pickedDateArray[0].ToString();
-            Label_Start.Text = pickedDateString;
-            /*var range = e.NewRangeAdded;
-            var rangeArray = range.ToArray();
-            var endDate = range[rangeArray.Length - 1].ToString();
-            Label_End.Text = endDate;*/
+            // var pickedDate = e.DateAdded;
+            // var pickedDateArray = pickedDate.ToArray;
+            // var pickedDateString= pickedDateArray[0].ToString();
+           
+            if (sender.SelectedRange != null)
+            {
+                var startDateObj = (Syncfusion.SfCalendar.XForms.SelectionRange) sender.SelectedRange;
+                var startDate = startDateObj.StartDate.ToString();
+                var endDateObj = (Syncfusion.SfCalendar.XForms.SelectionRange)sender.SelectedRange;
+                var endDate = endDateObj.EndDate.ToString();
+                /*var rangeArray = range.ToArray();
+                var startDate = range[0].ToString();
+                var endDate = range[rangeArray.Length - 1].ToString();*/
+                Label_Start.Text = startDate;
+                Label_End.Text = endDate;
+            }
 
             
         }

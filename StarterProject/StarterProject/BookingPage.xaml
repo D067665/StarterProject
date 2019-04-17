@@ -41,7 +41,7 @@
                         <Label x:Name="Label_Start" Text="Start" Grid.Column="0" FontSize="20"/>
                         <Label x:Name="Label_End" Text="End" Grid.Column="1" FontSize="20"/>
                     </Grid>
-                <syncfusion:SfCalendar x:Name="calendar" Margin="10,30,10,10" SelectionMode="SingleSelection" SelectionChanged="Calendar_SelectionChanged"/>
+                <syncfusion:SfCalendar x:Name="calendar" Margin="10,30,10,10" SelectionMode="RangeSelection" SelectionChanged="Calendar_SelectionChanged"/>
                 <buttons:SfButton x:Name="Btn_Call"  Text="Book" 
                                       BackgroundColor="#7E6C94"  TextColor="White" 
                                       FontSize="16" />
