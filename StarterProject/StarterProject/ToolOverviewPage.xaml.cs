@@ -63,5 +63,48 @@ namespace StarterProject
             Navigation.PushAsync(new MapOverviewPage());
 
         }
+
+        private void Btn_Search_Clicked(object sender, EventArgs e)
+        {
+            var container = BindingContext as ToolViewModel;
+            var searchValueToolDescription = SfEntry_ToolType.Text;
+            var searchValueToolLocation = SfEntry_ToolLocation.Text;
+            var searchValueToolPrice = SfEntry_ToolPrice.Text;
+            
+
+            listTools.BeginRefresh();
+
+            
+                listTools.ItemsSource = container.Tools.Where(i => i.ToolDescription.Contains(searchValueToolDescription)
+                && i.ToolLocation.Contains(searchValueToolLocation)
+                && i.ToolPrice.Contains(searchValueToolPrice));
+
+            listTools.EndRefresh();
+            IsBackLayerRevealed = Convert.ToBoolean("False");
+
+        }
+
+        private void Btn_DeleteEntry_Clicked(object sender, EventArgs e)
+        {
+            //SfEntry_ToolType.Text = "";
+
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            SfEntry_ToolType.Text = "";
+
+        }
+
+        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            SfEntry_ToolLocation.Text = "";
+        }
+
+        private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        {
+            SfEntry_ToolPrice.Text = "";
+
+        }
     }
 }

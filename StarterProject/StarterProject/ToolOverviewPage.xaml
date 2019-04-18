@@ -3,20 +3,70 @@
             xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-             xmlns:segmentCollection="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             
             xmlns:backdrop="clr-namespace:Syncfusion.XForms.Backdrop;assembly=Syncfusion.SfBackdrop.XForms"
             x:Class="StarterProject.ToolOverviewPage"
-            Title="Menu"
-            BackLayerRevealOption="Fill" 
+            Title="Tool Search"
+            
             IsBackLayerRevealed="True"
+            OpenIcon="arrow_down.png"
+            CloseIcon="arrow_up.png"
     >
    
 
     <backdrop:SfBackdropPage.BackLayer>
         <backdrop:BackdropBackLayer>
-            <StackLayout>
-                <ListView>
-                    <ListView.ItemsSource>
+            <StackLayout Margin="10,10,10,10">
+                <!--<Entry x:Name="SearchEntry_ToolDescription" Placeholder="Tool Type"/>
+                <Entry x:Name="SearchEntry_ToolLocation" Placeholder="Tool Location"/>
+                <Entry x:Name="SearchEntry_ToolPrice" Placeholder="Tool Price"/>-->
+                <Label Text="Enter your search criteria" FontSize="23" Margin="0,10,0,10"/>
+               
+                    <inputLayout:SfTextInputLayout    Hint="Tool Type"  ContainerType="Outlined"  TrailingViewPosition="Inside" FocusedColor="#7E6C94" ContainerBackgroundColor="White" Grid.Column="1">
+                        <Entry x:Name="SfEntry_ToolType" />
+                        <inputLayout:SfTextInputLayout.TrailingView>
+                            <Label x:Name="Image_ToolTypeEntry"  Text="&#x2716;">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Label.GestureRecognizers>
+
+                            </Label>
+                        </inputLayout:SfTextInputLayout.TrailingView>
+                    </inputLayout:SfTextInputLayout>
+                
+
+               
+                    <inputLayout:SfTextInputLayout    Hint="Tool Location"  ContainerType="Outlined"  TrailingViewPosition="Inside" FocusedColor="#7E6C94" ContainerBackgroundColor="White" Grid.Column="1">
+                        <Entry x:Name="SfEntry_ToolLocation" />
+                        <inputLayout:SfTextInputLayout.TrailingView>
+                            <Label x:Name="Image_ToolLocationEntry"  Text="&#x2716;">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                                </Label.GestureRecognizers></Label>
+                        </inputLayout:SfTextInputLayout.TrailingView>
+                    </inputLayout:SfTextInputLayout>
+              
+
+                
+                    <inputLayout:SfTextInputLayout    Hint="Tool Price"  ContainerType="Outlined"  TrailingViewPosition="Inside" FocusedColor="#7E6C94" ContainerBackgroundColor="White" Grid.Column="1">
+                        <Entry x:Name="SfEntry_ToolPrice" />
+                        <inputLayout:SfTextInputLayout.TrailingView>
+                            <Label x:Name="Image_ToolPricenEntry"  Text="&#x2716;">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </inputLayout:SfTextInputLayout.TrailingView>
+                    </inputLayout:SfTextInputLayout>
+                
+                
+                <buttons:SfButton x:Name="Btn_Search"
+                                      Text="Search"  HorizontalOptions="CenterAndExpand"
+                                      BackgroundColor="#7E6C94"  TextColor="White" HeightRequest="60" 
+                                       FontSize="18"   Clicked="Btn_Search_Clicked"/>
+                <!-- <ListView>
+                    
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Appetizers</x:String>
                             <x:String>Soups</x:String>
@@ -24,7 +74,7 @@
                             <x:String>Salads</x:String>
                         </x:Array>
                     </ListView.ItemsSource>
-                </ListView>
+                </ListView>-->
             </StackLayout>
         </backdrop:BackdropBackLayer>
     </backdrop:SfBackdropPage.BackLayer>
@@ -33,7 +83,7 @@
         <backdrop:BackdropFrontLayer>
             <StackLayout BackgroundColor="WhiteSmoke" VerticalOptions="FillAndExpand">
                 <Label Text="Find the Tool you need" FontSize="34"/>
-                <SearchBar TextChanged="SearchBar_TextChanged" />
+                
 
                 <ScrollView><!-- Margin="10,10,10,0" -->
                     <ListView x:Name="listTools" ItemsSource="{Binding Tools}" RowHeight="100" ItemTapped="ListSpeakers_ItemTapped" IsPullToRefreshEnabled="True">
