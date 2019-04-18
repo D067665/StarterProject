@@ -12,6 +12,7 @@
   <ItemGroup>
     <PackageReference Include="sqlite-net-pcl" Version="1.6.258-beta" />
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.1.0.40" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.1.0.41" />
     <PackageReference Include="Syncfusion.Xamarin.SfBackdrop" Version="17.1.0.38" />
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="17.1.0.38" />
     <PackageReference Include="System.Collections" Version="4.3.0" />

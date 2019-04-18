@@ -65,6 +65,9 @@
     <PackageReference Include="Syncfusion.Xamarin.Buttons">
       <Version>17.1.0.40</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.Core">
+      <Version>17.1.0.41</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfBackdrop">
       <Version>17.1.0.38</Version>
     </PackageReference>

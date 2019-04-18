@@ -57,7 +57,7 @@
 
                     </syncfusion:SfCalendar>-->
 
-                        <Entry x:Name="Entry_Comments" Placeholder="Comments"/>
+                        
                         <Label x:Name="Lbl_Photo" Text="Take a Photo of your Tool" FontSize="20"/>
                         <Frame x:Name="Frame_Image" OutlineColor="DarkSlateGray"  HorizontalOptions = "Center" HeightRequest="250" WidthRequest="300" >
                             
@@ -79,6 +79,7 @@
                         </Grid>
                        <!-- <Label x:Name="Label_Path" FontSize="16" />-->
                     </StackLayout>
+                    <Editor x:Name="Editor_Comments" Placeholder="Add any Comments" AutoSize="TextChanges"/>
                 </StackLayout>
             </ScrollView>
             <Grid Margin="0,10,0,10" >

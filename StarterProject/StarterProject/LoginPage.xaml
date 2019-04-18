@@ -4,11 +4,14 @@
              x:Class="StarterProject.LoginPage"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              xmlns:ie="clr-namespace:IconEntry.FormsPlugin.Abstractions;assembly=IconEntry.FormsPlugin.Abstractions"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              Title="Login">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="New" Icon="icon.png" Priority="0" Order="Primary" Clicked="Onclick"/>
     </ContentPage.ToolbarItems>
-    <StackLayout Margin="10,10,10,0" >
+    <StackLayout Margin="10,20,10,10" >
+        <Label x:Name="Lbl_Welcome" Text=" Welcome to ShareZeug" FontSize="25" HorizontalTextAlignment="Center"/>
+        <Label x:Name="Lbl_Description" Text="Your Platform to Share Tools with your Surroundings"  HorizontalTextAlignment="Center"/>
         <controls:CircleImage x:Name ="myLocalImage" WidthRequest="160" HeightRequest="160" HorizontalOptions="Center" Aspect="AspectFit"/>
         <!--<Image x:Name ="myLocalImage" HorizontalOptions="Center"/>-->
         <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="0">
@@ -34,13 +37,12 @@
 
             </Grid.ColumnDefinitions>
             <Image x:Name="Entry_LockIcon" Source="lock.png" Grid.Row="0" Grid.Column="0" />
-            <Entry x:Name="Entry_Password" Placeholder="Enter your Password" Grid.Row="0" Grid.Column="1"  />
+            <Entry x:Name="Entry_Password" Placeholder="Enter your Password" Grid.Row="0" Grid.Column="1" IsPassword="True" />
+            
 
         </Grid>
-        
-
-        
-        <Button x:Name="Btn_SignIn" Text="Sign In" TextColor="White" BackgroundColor="#7E6C94" Clicked="Btn_SignIn_Clicked"/>
+        <Button x:Name="Btn_SignIn" Text="Sign In" TextColor="White" BackgroundColor="#7E6C94" Clicked="Btn_SignIn_Clicked" Margin="0,10,0,0"/>
+        <Label x:Name="Lbl_AlreadySignedUp" Text="Don't alrady have an Account?" Margin="0,10,0,10" HorizontalTextAlignment="Center"/>
         <Button x:Name="Btn_SignUp" Text="Sign Up" TextColor="White" BackgroundColor="#FFAD26" Clicked="Btn_SignUp_Clicked"/>
     </StackLayout>
 
