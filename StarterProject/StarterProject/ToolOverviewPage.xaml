@@ -35,7 +35,7 @@
                 <Label Text="Find the Tool you need" FontSize="34"/>
                 <SearchBar TextChanged="SearchBar_TextChanged" />
 
-                <ScrollView Margin="10,10,10,0">
+                <ScrollView><!-- Margin="10,10,10,0" -->
                     <ListView x:Name="listTools" ItemsSource="{Binding Tools}" RowHeight="100" ItemTapped="ListSpeakers_ItemTapped" IsPullToRefreshEnabled="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
