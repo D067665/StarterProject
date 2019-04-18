@@ -11,20 +11,22 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
+using Syncfusion.XForms.Backdrop;
+
 
 using Xamarin.Forms.Xaml;
 
 namespace StarterProject
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ToolOverviewPage : ContentPage
-	{
+	public partial class ToolOverviewPage : SfBackdropPage
+    {
 
         //SpeakerViewModel vm;
         ToolViewModel tvm;
         public ToolOverviewPage ()
 		{
-			InitializeComponent ();
+			InitializeComponent();
             tvm = new ToolViewModel();
             //vm = new SpeakerViewModel();
             //listSpeakers.ItemsSource = vm.Speakers;
@@ -43,7 +45,8 @@ namespace StarterProject
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
             var container = BindingContext as ToolViewModel;
-            listTools.BeginRefresh();
+            
+            listTools.BeginRefresh(); 
 
             if (string.IsNullOrWhiteSpace(e.NewTextValue))
                 listTools.ItemsSource = container.Tools;

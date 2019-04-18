@@ -63,16 +63,16 @@
       <Version>2.1.0.4</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Buttons">
-      <Version>17.1.0.40</Version>
+      <Version>17.1.0.41</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Core">
       <Version>17.1.0.41</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfBackdrop">
-      <Version>17.1.0.38</Version>
+      <Version>17.1.0.41</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar">
-      <Version>17.1.0.38</Version>
+      <Version>17.1.0.41</Version>
     </PackageReference>
     <PackageReference Include="System.Collections">
       <Version>4.3.0</Version>
