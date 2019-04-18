@@ -1,97 +1,95 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:backdrop="clr-namespace:Syncfusion.XForms.Backdrop;assembly=Syncfusion.SfBackdrop.XForms"
+<backdrop:SfBackdropPage
+            xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:segmentCollection="clr-namespace:System.Collections.Generic;assembly=mscorlib"
-             x:Class="StarterProject.ToolOverviewPage"
-             Title="Overview">
-    
-    <ContentPage.Content>
+            xmlns:backdrop="clr-namespace:Syncfusion.XForms.Backdrop;assembly=Syncfusion.SfBackdrop.XForms"
+            x:Class="StarterProject.ToolOverviewPage"
+            Title="Menu"
+            BackLayerRevealOption="Fill" 
+            IsBackLayerRevealed="True"
+    >
+   
 
+    <backdrop:SfBackdropPage.BackLayer>
+        <backdrop:BackdropBackLayer>
+            <StackLayout>
+                <ListView>
+                    <ListView.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Appetizers</x:String>
+                            <x:String>Soups</x:String>
+                            <x:String>Desserts</x:String>
+                            <x:String>Salads</x:String>
+                        </x:Array>
+                    </ListView.ItemsSource>
+                </ListView>
+            </StackLayout>
+        </backdrop:BackdropBackLayer>
+    </backdrop:SfBackdropPage.BackLayer>
 
-        <StackLayout Orientation="Vertical" Margin="10,10,10,10">
-            <!-- add in contentPage description not working-->
-            <!--xmlns:segmentCollection="clr-namespace:System.Collections.Generic;assembly=mscorlib"-->
-            
+    <backdrop:SfBackdropPage.FrontLayer>
+        <backdrop:BackdropFrontLayer>
+            <StackLayout BackgroundColor="WhiteSmoke" VerticalOptions="FillAndExpand">
                 <Label Text="Find the Tool you need" FontSize="34"/>
-            <SearchBar TextChanged="SearchBar_TextChanged" />
-           
+                <SearchBar TextChanged="SearchBar_TextChanged" />
 
-           <!-- <buttons:SfSegmentedControl
-            SelectionTextColor = "White"
-            HeightRequest="80"
-            VisibleSegmentsCount="6"
-            Color="Transparent" 
-            BorderColor="#929292"
-            SelectedIndex="1"
-            FontColor="#929292"
-            BackgroundColor="Transparent" >
-                
-                <segmentCollection:List x:TypeArguments="x:String">
-                    <x:String>1</x:String>
-                    <x:String>2</x:String>
-                    <x:String>3</x:String>
-                    <x:String>4</x:String>
-                    <x:String>5</x:String>
-                    <x:String>6</x:String>
-                </segmentCollection:List>
-            </buttons:SfSegmentedControl>-->
+                <ScrollView Margin="10,10,10,0">
+                    <ListView x:Name="listTools" ItemsSource="{Binding Tools}" RowHeight="100" ItemTapped="ListSpeakers_ItemTapped" IsPullToRefreshEnabled="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <!--<ImageCell Text="{Binding Topic}" TextColor="Purple" Detail="{Binding SpeakerName}" DetailColor="Black" ImageSource="hammer.png" />-->
+                                <ViewCell >
+                                    <ViewCell.View>
+                                        <Grid Margin="0,10,0,10" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="20*"/>
+                                                <ColumnDefinition Width="10*"/>
+                                                <ColumnDefinition Width="70*"/>
+                                            </Grid.ColumnDefinitions>
 
-            <ScrollView Margin="10,10,10,0">
-            <ListView x:Name="listTools" ItemsSource="{Binding Tools}" RowHeight="100" ItemTapped="ListSpeakers_ItemTapped" IsPullToRefreshEnabled="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <!--<ImageCell Text="{Binding Topic}" TextColor="Purple" Detail="{Binding SpeakerName}" DetailColor="Black" ImageSource="hammer.png" />-->
-                        <ViewCell >
-                            <ViewCell.View>
-                                <Grid Margin="0,10,0,10" >
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="20*"/>
-                                        <ColumnDefinition Width="10*"/>
-                                        <ColumnDefinition Width="70*"/>
-                                    </Grid.ColumnDefinitions>
-                                    
-                                    <Image Source="{Binding ToolImage}" WidthRequest="50" HeightRequest="50" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"/>
-                                    
-                                    <Label Text="{Binding ToolDescription}" FontSize="20" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"/>
+                                            <Image Source="{Binding ToolImage}" WidthRequest="50" HeightRequest="50" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"/>
 
-                                    <Image Source="location.png" Grid.Column="1" Grid.Row="1"/>
-                                    <Label Text="{Binding ToolLocation}"  Grid.Column="2" Grid.Row="1"/>
+                                            <Label Text="{Binding ToolDescription}" FontSize="20" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"/>
 
-                                    <Image Source="price.png" Grid.Column="1" Grid.Row="2"/>
-                                    <Label Text="{Binding ToolPrice}" Grid.Column="2" Grid.Row="2"/>
+                                            <Image Source="location.png" Grid.Column="1" Grid.Row="1"/>
+                                            <Label Text="{Binding ToolLocation}"  Grid.Column="2" Grid.Row="1"/>
 
-                                </Grid>
-                                
-                            </ViewCell.View>
-                        </ViewCell>
+                                            <Image Source="price.png" Grid.Column="1" Grid.Row="2"/>
+                                            <Label Text="{Binding ToolPrice}" Grid.Column="2" Grid.Row="2"/>
 
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                                        </Grid>
+
+                                    </ViewCell.View>
+                                </ViewCell>
+
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
 
 
-            </ListView>
-            </ScrollView>
-            <Grid Margin="0,10,0,10" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50*"/>
-                    <ColumnDefinition Width="50*"/>
-                </Grid.ColumnDefinitions>
-                <buttons:SfButton x:Name="Btn_ViewOnMap"
-                                      Text="View on Map" ShowIcon="True" ImageSource="map.PNG" MinimumHeightRequest="30" MinimumWidthRequest="30"
-                                      BackgroundColor="White" BorderColor="#7E6C94" TextColor="Black" BorderWidth="1"
-                                       FontSize="16"  Grid.Column="1" Clicked="Button_Clicked"/>
-                
-            </Grid>
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+                    </ListView>
+                </ScrollView>
+                <Grid Margin="0,10,0,10" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="50*"/>
+                    </Grid.ColumnDefinitions>
+                    <buttons:SfButton x:Name="Btn_ViewOnMap"
+                              Text="View on Map" ShowIcon="True" ImageSource="map.PNG" MinimumHeightRequest="30" MinimumWidthRequest="30"
+                              BackgroundColor="White" BorderColor="#7E6C94" TextColor="Black" BorderWidth="1"
+                              FontSize="16"  Grid.Column="1" Clicked="Button_Clicked"/>
+                </Grid>
+            </StackLayout>
+        </backdrop:BackdropFrontLayer>
+    </backdrop:SfBackdropPage.FrontLayer>
+
+</backdrop:SfBackdropPage>
