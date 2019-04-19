@@ -14,7 +14,7 @@
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.1.0.41" />
     <PackageReference Include="Syncfusion.Xamarin.SfBackdrop" Version="17.1.0.41" />
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="17.1.0.41" />
-    <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="17.1.0.41" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.1.0.41" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="Xam.FormsPlugin.IconEntry" Version="1.1.1" />
     <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />

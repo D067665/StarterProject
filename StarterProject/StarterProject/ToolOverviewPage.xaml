@@ -87,7 +87,7 @@
                 <Label x:Name="Lbl_ToolSearchIntro" Text="Find the Tool you need" FontSize="34"/>
                 
 
-                <ScrollView Margin="10,10,10,0">
+                <ScrollView><!-- Margin="10,10,10,0" -->
                     <ListView x:Name="listTools" ItemsSource="{Binding Tools}" RowHeight="100" ItemTapped="ListSpeakers_ItemTapped" IsPullToRefreshEnabled="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
