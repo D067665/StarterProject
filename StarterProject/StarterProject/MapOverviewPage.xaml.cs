@@ -103,18 +103,18 @@ namespace StarterProject
             {
                 
                 //musst access BindingContext to display
-                await Navigation.PushAsync(new ToolDetailPage(tool.ToolDescription, tool.ToolLocation, tool.ToolPrice, tool.ToolImage, tool.ToolLat, tool.ToolLong, tool.OwnerPhone));
+                await Navigation.PushAsync(new ToolDetailPage(tool.ToolDescription, tool.ToolLocation, tool.ToolPrice, tool.CombinedPrice, tool.ToolImage, tool.ToolLat, tool.ToolLong, tool.OwnerPhone));
             }
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            var locator = CrossGeolocator.Current;
+            /*var locator = CrossGeolocator.Current;
             locator.DesiredAccuracy = 50;
             var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(100000));
 
             Lbl_Lat.Text = position.Latitude.ToString();
-            Lbl_Long.Text = position.Longitude.ToString();
+            Lbl_Long.Text = position.Longitude.ToString();*/
 
 
 

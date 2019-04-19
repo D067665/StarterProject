@@ -6,18 +6,18 @@
              x:Class="StarterProject.MapOverviewPage">
     <ContentPage.Content>
         <StackLayout >
-            <Label x:Name="Lbl_MapViewDescription" Text="Explore the Map" Margin="10,10,10,10"/>
-            <maps:Map WidthRequest="320" HeightRequest="200"
+            <Label x:Name="Lbl_MapViewDescription" Text="View Results on Map" Margin="10,10,10,10" FontSize="25"/>
+            <maps:Map VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
                   x:Name="MyMap"
                   IsShowingUser="true"
                   MapType="Street" />
 
-            <Button Text="Get my Location"
+           <!-- <Button Text="Get my Location"
                 Clicked="Button_Clicked"/>
             <Label Text="Latitude"/>
             <Label x:Name="Lbl_Lat" />
             <Label Text="Long"/>
-            <Label x:Name="Lbl_Long"/>
+            <Label x:Name="Lbl_Long"/>-->
         </StackLayout>
 
     </ContentPage.Content>

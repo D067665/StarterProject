@@ -38,7 +38,7 @@ namespace StarterProject
         private async void ListSpeakers_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var details = e.Item as Tool;
-            await Navigation.PushAsync(new ToolDetailPage(details.ToolDescription, details.ToolLocation, details.ToolPrice, details.ToolImage, details.ToolLat, details.ToolLong, details.OwnerPhone));
+            await Navigation.PushAsync(new ToolDetailPage(details.ToolDescription, details.ToolLocation, details.ToolPrice, details.ToolPriceSpan, details.ToolImage, details.ToolLat, details.ToolLong, details.OwnerPhone));
 
         }
 
@@ -67,20 +67,56 @@ namespace StarterProject
         private void Btn_Search_Clicked(object sender, EventArgs e)
         {
             var container = BindingContext as ToolViewModel;
-            var searchValueToolDescription = SfEntry_ToolType.Text;
-            var searchValueToolLocation = SfEntry_ToolLocation.Text;
-            var searchValueToolPrice = SfEntry_ToolPrice.Text;
+            var results = listTools.ItemsSource;
+            string searchValueToolDescription = SfEntry_ToolType.Text ?? "";
+            var searchValueToolLocation = SfEntry_ToolLocation.Text ?? "";
+            
+            var searchValueToolPrice = SfEntry_ToolPrice.Text ?? "";
+           
+
+            int searchValueToolPriceInt = 0;
+
+            if (searchValueToolPrice.Equals(""))
+            {
+                results = container.Tools.Where(i => (i.ToolDescription).Contains(searchValueToolDescription)
+            && (i.ToolLocation).Contains(searchValueToolLocation));
             
 
-            listTools.BeginRefresh();
+            }
+            else
+            {
+                searchValueToolPriceInt = int.Parse(searchValueToolPrice);
+                results = container.Tools.Where(i => (i.ToolDescription).Contains(searchValueToolDescription)
+            && (i.ToolLocation).Contains(searchValueToolLocation)
+            && (i.ToolPrice <= searchValueToolPriceInt));
+            }
+
+
+            // listTools.BeginRefresh();
+            /* listTools.ItemsSource = container.Tools.Where(i => i.ToolDescription.Contains(searchValueToolDescription));
+
+             listTools.ItemsSource = container.Tools.Where(i => i.ToolLocation.Contains(searchValueToolLocation));*/
+            
+
 
             
-                listTools.ItemsSource = container.Tools.Where(i => i.ToolDescription.Contains(searchValueToolDescription)
+
+            listTools.ItemsSource = results;
+
+
+             /*  listTools.ItemsSource = container.Tools.Where(i => i.ToolDescription.Contains(searchValueToolDescription)
                 && i.ToolLocation.Contains(searchValueToolLocation)
-                && i.ToolPrice.Contains(searchValueToolPrice));
+                && i.ToolPrice.Contains(searchValueToolPrice));*/
 
-            listTools.EndRefresh();
+            //listTools.EndRefresh();
             IsBackLayerRevealed = Convert.ToBoolean("False");
+           // var count = (listTools.ItemsSource as List<Tool>).Count;
+           /* if ((listTools.ItemsSource as List<Tool>).Count == 0)
+            {
+                Lbl_ToolSearchIntro.Text = "Unfortunatly, there were no matches";
+                Lbl_ToolSearchIntro.FontSize = 18;
+            }*/
+            
 
         }
 

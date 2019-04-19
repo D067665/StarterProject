@@ -15,12 +15,12 @@ namespace StarterProject
 	public partial class ToolDetailPage : ContentPage
 	{
         private string OwnerPhone;
-		public ToolDetailPage ( string ToolDescription, string ToolLocation, string ToolPrice, string ToolImage, double ToolLat, double ToolLong, string OwnerPhone)
+		public ToolDetailPage ( string ToolDescription, string ToolLocation, double ToolPrice, string ToolPriceSpan, string ToolImage, double ToolLat, double ToolLong, string OwnerPhone)
 		{
 			InitializeComponent ();
             Label_ToolDescription.Text = ToolDescription;
             Label_ToolLocation.Text = ToolLocation;
-            Label_ToolPrice.Text = ToolPrice;
+            Label_ToolPrice.Text = ToolPrice.ToString() + ToolPriceSpan;
             Image_Tool.Source = ToolImage;
             MapDetail.MoveToRegion(
               MapSpan.FromCenterAndRadius(

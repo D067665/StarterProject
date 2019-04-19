@@ -160,6 +160,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar">
       <Version>17.1.0.41</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox">
+      <Version>17.1.0.41</Version>
+    </PackageReference>
     <PackageReference Include="System.Collections">
       <Version>4.3.0</Version>
     </PackageReference>
