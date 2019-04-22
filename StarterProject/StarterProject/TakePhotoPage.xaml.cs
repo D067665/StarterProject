@@ -18,10 +18,13 @@ namespace StarterProject
         public TakePhotoPage()
         {
             InitializeComponent();
-            
-            
-            
-            
+            Picker_PriceDetail.Items.Add("per Day");
+            Picker_PriceDetail.Items.Add("per Week");
+            Picker_PriceDetail.Items.Add("per Month");
+
+
+
+
 
         }
         private void MainDatePicker_DateSelected(object sender, DateChangedEventArgs e)
@@ -63,6 +66,7 @@ namespace StarterProject
                 var stream = file.GetStream();
                 return stream;
             });
+           
 
 
 
@@ -73,6 +77,30 @@ namespace StarterProject
             var range = e.NewRangeAdded;
 
             Console.WriteLine(range.ToList());
+
+        }
+
+        private async void Btn_Publish_Clicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Thank you!", "You successfully uploaded your Tool to share it with the Community.", "Ok");
+
+           
+
+        }
+
+       
+
+        private void Btn_RemoveImage_Clicked(object sender, EventArgs e)
+        {
+            image.Source = "camera.PNG";
+           
+
+        }
+
+        private void Picker_PriceDetail_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedItem = Picker_PriceDetail.Items[Picker_PriceDetail.SelectedIndex];
+            
 
         }
     }

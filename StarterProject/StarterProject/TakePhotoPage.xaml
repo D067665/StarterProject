@@ -2,72 +2,100 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:local="clr-namespace:StarterProject.ViewModel"
              x:Class="StarterProject.TakePhotoPage"
              Title="Upload">
     <ContentPage.Content>
-        <ScrollView Margin="10,10,10,10">
-            <StackLayout Orientation="Vertical">
-                
 
-                <Label Text="Share your tool with the world!"    HorizontalOptions="CenterAndExpand"  Margin="0,20,0,30" FontSize="21"/>
-                
-                <Entry x:Name="Entry_Toolname" Placeholder="Tool Name"/>
-                <Entry x:Name="Entry_Toollocation" Placeholder="Tool Location" />
-                <Grid Padding="5,0,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50*"/>
-                        <ColumnDefinition Width="50*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label x:Name="Label_Startdate" FontSize="18"  Text="Start Date" Grid.Row="0" Grid.Column="0"/>
-                    <DatePicker x:Name="MainDatePicker" MinimumDate="1/1/2018" MaximumDate="12/31/2020" DateSelected="MainDatePicker_DateSelected"  Grid.Row="1" Grid.Column="0" />
-                    
-                    <Label x:Name="Label_Enddate" FontSize="18"  Text="End Date"  Grid.Row="0" Grid.Column="1" />
-                    <DatePicker x:Name="MainDatePicker2" MinimumDate="1/1/2018" MaximumDate="12/31/2020" DateSelected="MainDatePicker_DateSelectedEnd"  Grid.Row="1" Grid.Column="1" />
-                    
-                </Grid>
 
-              <!--  <StackLayout>
+        <StackLayout Orientation="Vertical">
+
+
+            <Label Text="Share your tool with the world!"    HorizontalOptions="CenterAndExpand"  Margin="0,20,0,30" FontSize="21"/>
+            <ScrollView Margin="10,10,10,10">
+                <StackLayout>
+                    <Entry x:Name="Entry_Toolname" Placeholder="Tool Name"/>
+                    <Entry x:Name="Entry_Toollocation" Placeholder="Tool Location" />
+                    <Grid Margin="0,10,0,10" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="50*"/>
+                           
+                        </Grid.ColumnDefinitions>
+                        <Entry x:Name="Entry_Toolprice" Placeholder="Tool Price" Grid.Column="0"/>
+                        <Picker x:Name="Picker_PriceDetail" Grid.Column="1" SelectedIndexChanged="Picker_PriceDetail_SelectedIndexChanged" Title="Select Range"/>
+                    </Grid>
+                    <Grid Padding="5,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="50*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="Label_Startdate" FontSize="18"  Text="Start Date" Grid.Row="0" Grid.Column="0"/>
+                        <DatePicker x:Name="MainDatePicker" MinimumDate="1/1/2018" MaximumDate="12/31/2020" DateSelected="MainDatePicker_DateSelected"  Grid.Row="1" Grid.Column="0" />
+
+                        <Label x:Name="Label_Enddate" FontSize="18"  Text="End Date"  Grid.Row="0" Grid.Column="1" />
+                        <DatePicker x:Name="MainDatePicker2" MinimumDate="1/1/2018" MaximumDate="12/31/2020" DateSelected="MainDatePicker_DateSelectedEnd"  Grid.Row="1" Grid.Column="1" />
+
+                    </Grid>
+
+                    <!--  <StackLayout>
                     <Label x:Name="Label_Startdate" FontSize="18"  Text="Select the Start Date" />
                     <DatePicker x:Name="MainDatePicker" MinimumDate="1/1/2018" MaximumDate="12/31/2020" DateSelected="MainDatePicker_DateSelected" />
                     <Label x:Name="Label_Enddate" FontSize="18"  Text="Select the End Date" />
                     <DatePicker x:Name="MainDatePicker2" MinimumDate="1/1/2018" MaximumDate="12/31/2020" DateSelected="MainDatePicker_DateSelectedEnd" />
                 </StackLayout>-->
-                <StackLayout>
-                   <!-- <syncfusion:SfCalendar x:Name="calendar"  SelectionChanged="Calendar_SelectionChanged" SelectionMode="RangeSelection" ViewMode="MonthView" >
+                    <StackLayout>
+                        <!-- <syncfusion:SfCalendar x:Name="calendar"  SelectionChanged="Calendar_SelectionChanged" SelectionMode="RangeSelection" ViewMode="MonthView" >
 
                     </syncfusion:SfCalendar>-->
 
-                    <Entry x:Name="Entry_Comments" Placeholder="Comments"/>
-                    <Frame x:Name="Frame_Image" OutlineColor="DarkSlateGray"  HorizontalOptions = "Center" >
-                        <Grid>
-                            <Label Text="Upload a picture of your tool"/>
-                            <Image x:Name="image" HeightRequest="240"/>
+                        
+                        <Label x:Name="Lbl_Photo" Text="Take a Photo of your Tool" FontSize="20"/>
+                        <Frame x:Name="Frame_Image" OutlineColor="DarkSlateGray"  HorizontalOptions = "Center" HeightRequest="250" WidthRequest="300" >
+                            
+                                <Image x:Name="image" HeightRequest="240" Source="camera.PNG"/>
+                            
+
+                        </Frame>
+                        <Grid  >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70*"/>
+                                <ColumnDefinition Width="30*"/>
+
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="Btn_TakePhoto" Text="Take a Photo" TextColor="White" BackgroundColor="#7E6C94" Clicked="Btn_TakePhoto_Clicked"  Grid.Column="0"/>
+                            <Button x:Name="Btn_RemoveImage" Text="Remove" BackgroundColor="#FFAD26" Clicked="Btn_RemoveImage_Clicked" Grid.Column="1"/>
                         </Grid>
-
-                    </Frame>
-                    <Button x:Name="Btn_TakePhoto" Text="Take a Photo" TextColor="White" BackgroundColor="#7E6C94" Clicked="Btn_TakePhoto_Clicked" Margin="0,20,0,0"/>
-                    <Label x:Name="Label_Path" FontSize="16" />
+                       <!-- <Label x:Name="Label_Path" FontSize="16" />-->
+                    </StackLayout>
+                    <Editor x:Name="Editor_Comments" Placeholder="Add any Comments" AutoSize="TextChanges"/>
                 </StackLayout>
+            </ScrollView>
+            <Grid Margin="0,10,0,10" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <buttons:SfButton x:Name="Btn_Publish"
+                                      Text="Publish" ShowIcon="True" ImageSource="publish2.PNG" MinimumHeightRequest="40" MinimumWidthRequest="40"
+                                      BackgroundColor="White" BorderColor="#7E6C94" TextColor="Black" BorderWidth="1"
+                                       FontSize="16"  Grid.Column="1" Clicked="Btn_Publish_Clicked"/>
+            </Grid>
+        </StackLayout>
 
-                <RelativeLayout  HorizontalOptions="FillAndExpand">
-                    <Button Text="Remove" BackgroundColor="#7E6C94"
-                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.0000,Constant=0}"
-                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
-                        Property=Width,Factor=.49,Constant=0}"/>
-                    <Button Text="Save" BackgroundColor="#FFAD26" RelativeLayout.XConstraint="{ConstraintExpression
-                        Type=RelativeToParent,Property=Width,Factor=.51,Constant=0}"
-                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
-                        Property=Width,Factor=.49,Constant=0}"/>
-                    
-                </RelativeLayout>
-                
-            </StackLayout>
-            
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -29,13 +29,12 @@ namespace StarterProject
             Navigation.PushAsync(new Register());
             // DependencyService.Get<IRestService<Event>>().GetAllAsync();
             // DependencyService.Get<IRegister>().testFirestore();
- 
+
 
         }
-
-        private async void Btn_SignIn_Clicked(object sender, EventArgs e)
+        private void Btn_SignIn_Clicked(object sender, EventArgs e)
         {
-            Console.WriteLine("gesendet");
+            Navigation.PushAsync(new LandingPage());
 
             try
             {
@@ -52,10 +51,26 @@ namespace StarterProject
                 Console.WriteLine("Exception: " + f);
             }
 
+         /*private async void Btn_SignIn_Clicked(object sender, EventArgs e)
+          {
+              Console.WriteLine("gesendet");
 
-            /*string test = Entry_EMailAdress.Text;
-            string user = await IFirebaseAuthenticator.LoginWithEmailPassword(Entry_EMailAdress.Text, Entry_Password.Text); */
+              try
+              {
+                  string token = await DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(Entry_EMailAdress.Text, Entry_Password.Text);
+                  Console.WriteLine("token: " + token);
+                  Navigation.PushAsync(new LandingPage());
+              }
+              catch (Exception f)
+              {
+                  DependencyService.Get<IToast>().ShortAlert("Überprüfe deine Eingaben!");
+                  Console.WriteLine("Exception: " + f);
+              }
 
-        }
+
+              /*string test = Entry_EMailAdress.Text;
+              string user = await IFirebaseAuthenticator.LoginWithEmailPassword(Entry_EMailAdress.Text, Entry_Password.Text);
+
+          }*/
     }
 }

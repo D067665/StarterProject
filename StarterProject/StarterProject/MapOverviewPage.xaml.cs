@@ -94,32 +94,27 @@ namespace StarterProject
         private async void Pin_Clicked(object sender, EventArgs eventArgs)
         {
             var selectedPin = sender as Pin;
-           
-
 
             //returns binding context during runtime, how to access it here?
-            var tool = selectedPin.BindingContext;
-            
-            
-            
+            var tool = (StarterProject.Model.Tool) selectedPin.BindingContext;
             
             var answer = await DisplayAlert(selectedPin?.Label, "Want to see details?", "See Details", "Close");
-            if (answer )
+            if (answer)
             {
+                
                 //musst access BindingContext to display
-                await Navigation.PushAsync(new LandingPage());
-                // await Navigation.PushAsync(new ToolDetailPage(details.ToolDescription, details.ToolLocation, details.ToolPrice, details.ToolImage));
+                await Navigation.PushAsync(new ToolDetailPage(tool.ToolDescription, tool.ToolLocation, tool.ToolPrice, tool.CombinedPrice, tool.ToolImage, tool.ToolLat, tool.ToolLong, tool.OwnerPhone));
             }
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            var locator = CrossGeolocator.Current;
+            /*var locator = CrossGeolocator.Current;
             locator.DesiredAccuracy = 50;
-            var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(10000));
+            var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(100000));
 
             Lbl_Lat.Text = position.Latitude.ToString();
-            Lbl_Long.Text = position.Longitude.ToString();
+            Lbl_Long.Text = position.Longitude.ToString();*/
 
 
 

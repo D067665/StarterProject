@@ -11,6 +11,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
+using Syncfusion.XForms.Backdrop;
+
 
 using Xamarin.Forms.Xaml;
 using Newtonsoft.Json;
@@ -21,14 +23,14 @@ using Newtonsoft.Json.Linq;
 namespace StarterProject
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ToolOverviewPage : ContentPage
-	{
+	public partial class ToolOverviewPage : SfBackdropPage
+    {
 
         //SpeakerViewModel vm;
         ToolViewModel tvm;
         public ToolOverviewPage ()
 		{
-			InitializeComponent ();
+			InitializeComponent();
             tvm = new ToolViewModel();
             //vm = new SpeakerViewModel();
             //listSpeakers.ItemsSource = vm.Speakers;
@@ -58,14 +60,15 @@ _client.GetAsync()
         private async void ListSpeakers_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var details = e.Item as Tool;
-            await Navigation.PushAsync(new ToolDetailPage(details.ToolDescription, details.ToolLocation, details.ToolPrice, details.ToolImage));
+            await Navigation.PushAsync(new ToolDetailPage(details.ToolDescription, details.ToolLocation, details.ToolPrice, details.ToolPriceSpan, details.ToolImage, details.ToolLat, details.ToolLong, details.OwnerPhone));
 
         }
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
             var container = BindingContext as ToolViewModel;
-            listTools.BeginRefresh();
+            
+            listTools.BeginRefresh(); 
 
             if (string.IsNullOrWhiteSpace(e.NewTextValue))
                 listTools.ItemsSource = container.Tools;
@@ -80,6 +83,85 @@ _client.GetAsync()
         {
             //Navigation.PushAsync(new GeoPage());
             Navigation.PushAsync(new MapOverviewPage());
+
+        }
+
+        private void Btn_Search_Clicked(object sender, EventArgs e)
+        {
+            var container = BindingContext as ToolViewModel;
+            var results = listTools.ItemsSource;
+            string searchValueToolDescription = SfEntry_ToolType.Text ?? "";
+            var searchValueToolLocation = SfEntry_ToolLocation.Text ?? "";
+            
+            var searchValueToolPrice = SfEntry_ToolPrice.Text ?? "";
+           
+
+            int searchValueToolPriceInt = 0;
+
+            if (searchValueToolPrice.Equals(""))
+            {
+                results = container.Tools.Where(i => (i.ToolDescription).Contains(searchValueToolDescription)
+            && (i.ToolLocation).Contains(searchValueToolLocation));
+            
+
+            }
+            else
+            {
+                searchValueToolPriceInt = int.Parse(searchValueToolPrice);
+                results = container.Tools.Where(i => (i.ToolDescription).Contains(searchValueToolDescription)
+            && (i.ToolLocation).Contains(searchValueToolLocation)
+            && (i.ToolPrice <= searchValueToolPriceInt));
+            }
+
+
+            // listTools.BeginRefresh();
+            /* listTools.ItemsSource = container.Tools.Where(i => i.ToolDescription.Contains(searchValueToolDescription));
+
+             listTools.ItemsSource = container.Tools.Where(i => i.ToolLocation.Contains(searchValueToolLocation));*/
+            
+
+
+            
+
+            listTools.ItemsSource = results;
+
+
+             /*  listTools.ItemsSource = container.Tools.Where(i => i.ToolDescription.Contains(searchValueToolDescription)
+                && i.ToolLocation.Contains(searchValueToolLocation)
+                && i.ToolPrice.Contains(searchValueToolPrice));*/
+
+            //listTools.EndRefresh();
+            IsBackLayerRevealed = Convert.ToBoolean("False");
+           // var count = (listTools.ItemsSource as List<Tool>).Count;
+           /* if ((listTools.ItemsSource as List<Tool>).Count == 0)
+            {
+                Lbl_ToolSearchIntro.Text = "Unfortunatly, there were no matches";
+                Lbl_ToolSearchIntro.FontSize = 18;
+            }*/
+            
+
+        }
+
+        private void Btn_DeleteEntry_Clicked(object sender, EventArgs e)
+        {
+            //SfEntry_ToolType.Text = "";
+
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            SfEntry_ToolType.Text = "";
+
+        }
+
+        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            SfEntry_ToolLocation.Text = "";
+        }
+
+        private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        {
+            SfEntry_ToolPrice.Text = "";
 
         }
     }
