@@ -16,7 +16,8 @@ namespace StarterProject
 		{
 			InitializeComponent ();
            myLocalImage.Source = ImageSource.FromFile("toolkit.png");
-		}
+            httpclient.initialize();
+        }
         private void Onclick(object sender, EventArgs e)
         {
             //Navigation.PushAsync(new MainPage());
@@ -26,6 +27,9 @@ namespace StarterProject
         private void Btn_SignUp_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Register());
+            // DependencyService.Get<IRestService<Event>>().GetAllAsync();
+            // DependencyService.Get<IRegister>().testFirestore();
+ 
 
         }
 
@@ -37,6 +41,9 @@ namespace StarterProject
             {
                 string token = await DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(Entry_EMailAdress.Text, Entry_Password.Text);
                 Console.WriteLine("token: " + token);
+                Application.Current.Properties["token"] = token;
+
+                httpclient.setToken();
                 Navigation.PushAsync(new LandingPage());
             }
             catch (Exception f)

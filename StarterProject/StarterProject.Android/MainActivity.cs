@@ -11,7 +11,7 @@ using Plugin.CurrentActivity;
 using IconEntry.FormsPlugin.Abstractions;
 using Xamarin.Forms;
 using IconEntry.FormsPlugin.Android;
-using Firebase;
+using Firebase.Auth;
 
 
 
@@ -22,7 +22,7 @@ namespace StarterProject.Droid
     {
         protected override async void OnCreate(Bundle savedInstanceState)
         {
-            FirebaseApp.InitializeApp(Android.App.Application.Context); //Application.Context?
+            
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
@@ -37,8 +37,13 @@ namespace StarterProject.Droid
             IconEntry.FormsPlugin.Android.IconEntryRenderer.Init();
 
             Xamarin.FormsMaps.Init(this, savedInstanceState);
-                
+
+
+            Firebase.FirebaseApp.InitializeApp(this); //keine ahnung ob das rein oder raus muss //Android.App.Application.Context
+
             LoadApplication(new App());
+
+            //FirestoreService.Init(this); //??ß
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)

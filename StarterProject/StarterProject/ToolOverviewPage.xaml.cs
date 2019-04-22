@@ -13,6 +13,10 @@ using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
 using Xamarin.Forms.Xaml;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+//using Firebase.Database;
+//using Firebase.Database.Query;
 
 namespace StarterProject
 {
@@ -30,8 +34,26 @@ namespace StarterProject
             //listSpeakers.ItemsSource = vm.Speakers;
             //BindingContext = vm;
             BindingContext = tvm;
-            
-		}
+            /*
+string token = (string)Xamarin.Forms.Application.Current.Properties["token"];
+
+HttpClient _client = new HttpClient();
+_client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("OAuth", token);
+_client.GetAsync()
+*/
+            //  FirebaseClient fbclient = new FirebaseClient("https://firestore.googleapis.com/v1/projects/sharezeug/databases/(default)/documents/");
+            //  fbclient.Child("items").
+
+            loadItems();
+
+        }
+
+        private async void loadItems()
+        {
+            string res = await httpclient.getFromFirebase();
+            JObject json = JObject.Parse(res);
+            Console.WriteLine(res);
+        }
 
         private async void ListSpeakers_ItemTapped(object sender, ItemTappedEventArgs e)
         {
