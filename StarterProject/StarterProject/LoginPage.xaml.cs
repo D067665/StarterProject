@@ -32,9 +32,9 @@ namespace StarterProject
 
 
         }
-        private void Btn_SignIn_Clicked(object sender, EventArgs e)
+        private async void Btn_SignIn_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new LandingPage());
+            
 
             try
             {
@@ -50,6 +50,7 @@ namespace StarterProject
                 DependencyService.Get<IToast>().ShortAlert("Überprüfe deine Eingaben!");
                 Console.WriteLine("Exception: " + f);
             }
+        }
 
          /*private async void Btn_SignIn_Clicked(object sender, EventArgs e)
           {
