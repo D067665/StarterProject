@@ -88,9 +88,10 @@ namespace StarterProject
             var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(10000));
             Console.WriteLine("Lat: " + position.Latitude + "Long: " + position.Longitude);
             await DisplayAlert("Thank you!", "You successfully uploaded your Tool to share it with the Community." + position.Latitude + position.Longitude, "Ok");
-            
+            await Navigation.PushAsync(new LandingPage());
 
-           
+
+
 
         }
 

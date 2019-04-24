@@ -1,9 +1,11 @@
 ﻿
+using Newtonsoft.Json;
 using StarterProject.Model;
 using StarterProject.ViewModel;
 using Syncfusion.ListView.XForms;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +27,11 @@ namespace StarterProject
             tvm = new ToolViewModel();
 
             BindingContext = tvm;
-        }
+
+            
+
+
+            }
         private void ListView_SwipeStarted(object sender, SwipeStartedEventArgs e)
         {
             if (e.ItemIndex == 1)

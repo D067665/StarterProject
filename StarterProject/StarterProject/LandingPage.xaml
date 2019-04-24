@@ -53,6 +53,9 @@
             </Grid.RowDefinitions>
             <Image x:Name="Img_History" Source="profilePP.PNG"  HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1"/>
             <Label x:Name="Label_History" Text="View your profile"  FontSize="20" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Grid.Row="2" XAlign="Center"/>
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+            </Grid.GestureRecognizers>
 
         </Grid>
         <Grid BackgroundColor="White"  Grid.Column="1" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
