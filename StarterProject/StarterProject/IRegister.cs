@@ -8,5 +8,6 @@ namespace StarterProject
     public interface IRegister
     {
         Task<string> registerWithEmailPassword(string email, string password);
+        //void testFirestore();
     }
 }

@@ -24,8 +24,10 @@ namespace StarterProject
                 {
                     string token = await DependencyService.Get<IRegister>().registerWithEmailPassword(Entry_Email.Text, Entry_Password.Text);
                     Console.WriteLine(token);
+                    Application.Current.Properties["token"] = token;
                     DependencyService.Get<IToast>().ShortAlert("Erfolgreich registriert!");
-                    Navigation.PushAsync(new LoginPage());
+                    httpclient.setToken();
+                    Navigation.PushAsync(new LandingPage());
 
                 }
                 catch (Exception ex)

@@ -16,7 +16,8 @@ namespace StarterProject
 		{
 			InitializeComponent ();
            myLocalImage.Source = ImageSource.FromFile("toolkit.png");
-		}
+            httpclient.initialize();
+        }
         private void Onclick(object sender, EventArgs e)
         {
             //Navigation.PushAsync(new MainPage());
@@ -26,13 +27,29 @@ namespace StarterProject
         private void Btn_SignUp_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Register());
+            // DependencyService.Get<IRestService<Event>>().GetAllAsync();
+            // DependencyService.Get<IRegister>().testFirestore();
+
 
         }
         private void Btn_SignIn_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new LandingPage());
 
-        }
+            try
+            {
+                string token = await DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(Entry_EMailAdress.Text, Entry_Password.Text);
+                Console.WriteLine("token: " + token);
+                Application.Current.Properties["token"] = token;
+
+                httpclient.setToken();
+                Navigation.PushAsync(new LandingPage());
+            }
+            catch (Exception f)
+            {
+                DependencyService.Get<IToast>().ShortAlert("Überprüfe deine Eingaben!");
+                Console.WriteLine("Exception: " + f);
+            }
 
          /*private async void Btn_SignIn_Clicked(object sender, EventArgs e)
           {
@@ -52,7 +69,7 @@ namespace StarterProject
 
 
               /*string test = Entry_EMailAdress.Text;
-              string user = await IFirebaseAuthenticator.LoginWithEmailPassword(Entry_EMailAdress.Text, Entry_Password.Text); 
+              string user = await IFirebaseAuthenticator.LoginWithEmailPassword(Entry_EMailAdress.Text, Entry_Password.Text);
 
           }*/
     }
