@@ -24,6 +24,13 @@ namespace StarterProject
             return body;
         }
 
+        public static async void postItem()
+        {
+            //HttpContent mContent = new HttpContent();
+
+           // HttpResponseMessage res = await mClient.PostAsync("https://firestore.googleapis.com/v1/projects/sharezeug/databases/(default)/documents/items", "test");
+        }
+
         public static void setToken()
         {
             string token = (string)Xamarin.Forms.Application.Current.Properties["token"];
