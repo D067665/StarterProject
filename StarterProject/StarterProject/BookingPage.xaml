@@ -6,47 +6,60 @@
              Title="Booking"
              x:Class="StarterProject.BookingPage">
     <ContentPage.Content>
-        <ScrollView Margin="10,10,10,10">
-            <StackLayout>
-            <Label x:Name="BookingIntro" Text="Your Selected Tool"  FontSize="25"/>
-            <Grid Margin="0,20,0,30" >
+        <StackLayout Orientation="Vertical" Margin="10,10,10,10">
+            <ScrollView Margin="10,10,10,0">
+                <StackLayout>
+                    <Label x:Name="BookingIntro" Text="Your Selected Tool"  FontSize="25"/>
+                    <Grid Margin="0,20,0,30" >
 
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40*"/>
+                            <RowDefinition Height="30*"/>
+                            <RowDefinition Height="30*"/>
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="90*"/>
+                        </Grid.ColumnDefinitions>
+
+                        
+                        <Label x:Name="Label_ToolDescription" FontSize="20" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+                        <Image Source="location.png" Grid.Column="0" Grid.Row="1"/>
+                        <Label x:Name="Label_ToolLocation"  Grid.Column="1" Grid.Row="1"  FontSize="20"/>
+                        <Image Source="price.png" Grid.Column="0" Grid.Row="2"/>
+                        <Label x:Name="Label_ToolPrice"  Grid.Column="1" Grid.Row="2" FontSize="20"/>
+
+                    </Grid>
+                    <StackLayout>
+                        <Label x:Name="Label_CalenderIntro" Text="Select the Range to book the tool" FontSize="25"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="50*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="Label_Start" Text="Start" Grid.Column="0" FontSize="20"/>
+                            <Label x:Name="Label_End" Text="End" Grid.Column="1" FontSize="20"/>
+                        </Grid>
+                        <syncfusion:SfCalendar x:Name="calendar" Margin="10,30,10,10" SelectionMode="RangeSelection" SelectionChanged="Calendar_SelectionChanged"/>
+                       
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+            <Grid Margin="0,10,0,10" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40*"/>
-                    <RowDefinition Height="30*"/>
-                    <RowDefinition Height="30*"/>
-
+                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50*"/>
-                    <ColumnDefinition Width="10*"/>
-                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
-
-                <Image x:Name="Image_Tool" WidthRequest="100" HeightRequest="100" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"/>
-                <Label x:Name="Label_ToolDescription" FontSize="20" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"/>
-                <Image Source="location.png" Grid.Column="1" Grid.Row="1"/>
-                <Label x:Name="Label_ToolLocation"  Grid.Column="2" Grid.Row="1"  FontSize="20"/>
-                <Image Source="price.png" Grid.Column="1" Grid.Row="2"/>
-                <Label x:Name="Label_ToolPrice"  Grid.Column="2" Grid.Row="2" FontSize="20"/>              
-
+                <buttons:SfButton x:Name="Btn_Book"
+                              Text="Book" ShowIcon="True" ImageSource="map.PNG" MinimumHeightRequest="30" MinimumWidthRequest="30"
+                              BackgroundColor="White" BorderColor="#7E6C94" TextColor="Black" BorderWidth="1"
+                              FontSize="16"  Grid.Column="1" Clicked="Btn_Book_Clicked"/>
             </Grid>
-            <StackLayout>
-                <Label x:Name="Label_CalenderIntro" Text="Select the Range to book the tool" FontSize="25"/>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50*"/>
-                            <ColumnDefinition Width="50*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label x:Name="Label_Start" Text="Start" Grid.Column="0" FontSize="20"/>
-                        <Label x:Name="Label_End" Text="End" Grid.Column="1" FontSize="20"/>
-                    </Grid>
-                <syncfusion:SfCalendar x:Name="calendar" Margin="10,30,10,10" SelectionMode="RangeSelection" SelectionChanged="Calendar_SelectionChanged"/>
-                <buttons:SfButton x:Name="Btn_Call"  Text="Book" 
-                                      BackgroundColor="#7E6C94"  TextColor="White" 
-                                      FontSize="16" />
-            </StackLayout>
-            </StackLayout>
-        </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
