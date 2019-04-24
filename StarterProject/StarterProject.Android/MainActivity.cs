@@ -37,7 +37,9 @@ namespace StarterProject.Droid
             IconEntry.FormsPlugin.Android.IconEntryRenderer.Init();
 
             Xamarin.FormsMaps.Init(this, savedInstanceState);
-                
+
+           
+
             LoadApplication(new App());
         }
 
@@ -45,5 +47,7 @@ namespace StarterProject.Droid
         {
             Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+       
     }
 }

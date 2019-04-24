@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Plugin.Media;
+using Plugin.Geolocator;
 
 
 
@@ -82,13 +83,16 @@ namespace StarterProject
 
         private async void Btn_Publish_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Thank you!", "You successfully uploaded your Tool to share it with the Community.", "Ok");
+            var locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 50;
+            var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(10000));
+            Console.WriteLine("Lat: " + position.Latitude + "Long: " + position.Longitude);
+            await DisplayAlert("Thank you!", "You successfully uploaded your Tool to share it with the Community." + position.Latitude + position.Longitude, "Ok");
+            
 
            
 
         }
-
-       
 
         private void Btn_RemoveImage_Clicked(object sender, EventArgs e)
         {

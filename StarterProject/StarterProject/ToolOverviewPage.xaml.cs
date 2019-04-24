@@ -24,6 +24,8 @@ namespace StarterProject
 
         //SpeakerViewModel vm;
         ToolViewModel tvm;
+        public IEnumerable<Tool> searchResults;
+
         public ToolOverviewPage ()
 		{
 			InitializeComponent();
@@ -60,14 +62,14 @@ namespace StarterProject
         private void Button_Clicked(object sender, EventArgs e)
         {
             //Navigation.PushAsync(new GeoPage());
-            Navigation.PushAsync(new MapOverviewPage());
+            Navigation.PushAsync(new MapOverviewPage(searchResults));
 
         }
 
         private void Btn_Search_Clicked(object sender, EventArgs e)
         {
             var container = BindingContext as ToolViewModel;
-            var results = listTools.ItemsSource;
+             searchResults =  (IEnumerable<Tool>)listTools.ItemsSource;
             string searchValueToolDescription = SfEntry_ToolType.Text ?? "";
             var searchValueToolLocation = SfEntry_ToolLocation.Text ?? "";
             
@@ -78,7 +80,7 @@ namespace StarterProject
 
             if (searchValueToolPrice.Equals(""))
             {
-                results = container.Tools.Where(i => (i.ToolDescription).Contains(searchValueToolDescription)
+                searchResults = container.Tools.Where(i => (i.ToolDescription).Contains(searchValueToolDescription)
             && (i.ToolLocation).Contains(searchValueToolLocation));
             
 
@@ -86,7 +88,7 @@ namespace StarterProject
             else
             {
                 searchValueToolPriceInt = int.Parse(searchValueToolPrice);
-                results = container.Tools.Where(i => (i.ToolDescription).Contains(searchValueToolDescription)
+                searchResults = container.Tools.Where(i => (i.ToolDescription).Contains(searchValueToolDescription)
             && (i.ToolLocation).Contains(searchValueToolLocation)
             && (i.ToolPrice <= searchValueToolPriceInt));
             }
@@ -101,7 +103,7 @@ namespace StarterProject
 
             
 
-            listTools.ItemsSource = results;
+            listTools.ItemsSource = searchResults;
 
 
              /*  listTools.ItemsSource = container.Tools.Where(i => i.ToolDescription.Contains(searchValueToolDescription)

@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms.Maps;
+using StarterProject.Model;
+using StarterProject.ViewModel;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Plugin.Geolocator;
-using StarterProject.ViewModel;
+
 
 namespace StarterProject
 {
@@ -16,19 +18,31 @@ namespace StarterProject
 	public partial class MapOverviewPage : ContentPage
 	{
         ToolViewModel tvm;
-        public MapOverviewPage ()
+        public MapOverviewPage (IEnumerable<Tool> tools)
 		{
 			InitializeComponent ();
             tvm = new ToolViewModel();
             
             BindingContext = tvm;
-
+            
+            
             //placing Center of Map at own location
             GetLocation(MyMap);
             var pin = new Pin { };
-           
+
             //place pin for each tool in Tool Model
-            foreach (var tool in tvm.Tools)
+            foreach (var tool in tools)
+            {
+                var toolLat = tool.ToolLat;
+                var toolLong = tool.ToolLong;
+                var position = new Position(toolLat, toolLong);
+                pin = new Pin { Type = PinType.SearchResult, Position = position, Label = tool.ToolDescription, BindingContext = tool };
+
+                pin.Clicked += Pin_Clicked;
+                MyMap.Pins.Add(pin);
+            }
+
+            /*foreach (var tool in tvm.Tools)
             {
                 var toolLat = tool.ToolLat;
                 var toolLong = tool.ToolLong;
@@ -37,7 +51,7 @@ namespace StarterProject
                 
                 pin.Clicked += Pin_Clicked;
                 MyMap.Pins.Add(pin);
-            }
+            }*/
             
            
             
