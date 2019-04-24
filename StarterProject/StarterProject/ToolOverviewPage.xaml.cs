@@ -56,7 +56,30 @@ _client.GetAsync()
         {
             string res = await httpclient.getFromFirebase();
             JObject json = JObject.Parse(res);
-            Console.WriteLine(res);
+            // Console.WriteLine(res);
+
+            List<Werkzeug> objWerkzeugliste = new List<Werkzeug>();
+            ObservableCollection<Tool> toolsList = new ObservableCollection<Tool>();            
+
+            IEnumerable<JToken> documents = json.SelectTokens("documents[*]");
+            foreach (JToken document in documents)
+            {
+                Tool tool = new Tool();
+                tool.ToolDescription = (string)document.SelectToken("fields.description.stringValue").ToString();
+                tool.ToolLocation = (string)document.SelectToken("fields.location.stringValue").ToString();
+
+                //Werkzeug objWerkzeug = new Werkzeug();
+                //objWerkzeug.Description = (string) document.SelectToken("fields.description.stringValue").ToString();
+                //objWerkzeug.Location = (string)document.SelectToken("fields.location.stringValue").ToString();
+
+                //objWerkzeugliste.Add(objWerkzeug);
+                toolsList.Add(tool);
+                Console.WriteLine("Werkzeug:");
+                Console.WriteLine(tool.ToolDescription + tool.ToolLocation);
+                Console.WriteLine("--------");
+            }
+            // ObjWerkzeugListe = JsonConvert.DeserializeObject<WerkzeugListe>(res);
+            listTools.ItemsSource = toolsList;
         }
 
         private async void ListSpeakers_ItemTapped(object sender, ItemTappedEventArgs e)
