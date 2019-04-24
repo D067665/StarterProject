@@ -73,6 +73,6 @@ namespace StarterProject
                  string user = await IFirebaseAuthenticator.LoginWithEmailPassword(Entry_EMailAdress.Text, Entry_Password.Text);
 
              }*/
-        }
+        
     }
 }
