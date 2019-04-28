@@ -117,7 +117,7 @@ namespace StarterProject
             {
                 
                 //musst access BindingContext to display
-                await Navigation.PushAsync(new ToolDetailPage(tool.ToolDescription, tool.ToolLocation, tool.ToolPrice, tool.CombinedPrice, tool.ToolImage, tool.ToolLat, tool.ToolLong, tool.OwnerPhone));
+                await Navigation.PushAsync(new ToolDetailPage(tool.ToolDescription, tool.ToolLocation,  tool.CombinedPrice, tool.ToolImage, tool.ToolLat, tool.ToolLong, tool.OwnerPhone, tool.ToolDatabaseNameSub, tool.minDateUser, tool.maxDateUser));
             }
         }
 

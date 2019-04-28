@@ -55,18 +55,63 @@ _client.GetAsync()
         private async void loadItems()
         {
             string res = await httpclient.getFromFirebase();
+            string resAvailability = await httpclient.getFromFirebaseAvailability();
+            JObject jsonAv = JObject.Parse(resAvailability);
             JObject json = JObject.Parse(res);
             // Console.WriteLine(res);
+            Console.WriteLine("Json: " + json);
 
             List<Werkzeug> objWerkzeugliste = new List<Werkzeug>();
-            ObservableCollection<Tool> toolsList = new ObservableCollection<Tool>();            
+            ObservableCollection<Tool> toolsList = new ObservableCollection<Tool>();
 
+            ObservableCollection <Availability> availability = new ObservableCollection<Availability>();
+            //IEnumerable<JToken> documentsAv = jsonAv.SelectTokens("documents.fields").Where(s => (string)s["test"] == "test1");
             IEnumerable<JToken> documents = json.SelectTokens("documents[*]");
+            IEnumerable<JToken> documentsAv = jsonAv.SelectTokens("documents[*]");
+
+            
+           /* foreach (JToken documentAv in documentsAv)
+            {
+                Availability availabilityTool = new Availability();
+                availabilityTool.startDate = DateTime.Parse((string)documentAv.SelectToken("fields.start.timestampValue").ToString());
+                availabilityTool.endDate = DateTime.Parse((string)documentAv.SelectToken("fields.end.timestampValue").ToString());
+                availabilityTool.toolRef = (string)documentAv.SelectToken("fields.item.referenceValue").ToString();
+                Console.WriteLine("ToolRef: " + availabilityTool.toolRef);
+                availability.Add(availabilityTool);
+                Console.WriteLine("WerkzeugAvail:");
+                Console.WriteLine("Avail: " + availabilityTool.startDate + availabilityTool.endDate);
+                Console.WriteLine("--------");
+                
+            }
+            Console.WriteLine(availability);*/
+
+           
             foreach (JToken document in documents)
             {
+               
                 Tool tool = new Tool();
                 tool.ToolDescription = (string)document.SelectToken("fields.description.stringValue").ToString();
                 tool.ToolLocation = (string)document.SelectToken("fields.location.stringValue").ToString();
+                var dataBaseName = (string)document.SelectToken("name").ToString();
+                tool.ToolDatabaseNameSub = dataBaseName.Substring(55);               
+                tool.ToolPriceSpan = (string)document.SelectToken("fields.priceSpan.stringValue").ToString();
+                Console.WriteLine(tool.ToolDescription + tool.ToolLocation + tool.ToolPriceSpan);
+                tool.OwnerPhone = (string)document.SelectToken("fields.ownerphone.stringValue").ToString();
+                Console.WriteLine(tool.ToolDescription + tool.ToolLocation + tool.ToolPriceSpan + tool.OwnerPhone);
+                var minDateUser = document.SelectToken("fields.minDateUser.timestampValue").ToString();
+                tool.minDateUser = DateTime.Parse(minDateUser);
+                
+                var maxDateUser = document.SelectToken("fields.maxDateUser.timestampValue").ToString();
+                tool.maxDateUser = DateTime.Parse(maxDateUser);
+                var price = document.SelectToken("fields.price.integerValue").ToString();
+                tool.ToolPrice = Convert.ToDouble(price);
+                var lat = document.SelectToken("fields.geolocation.geoPointValue.latitude").ToString();
+                tool.ToolLat = Convert.ToDouble(lat);
+                var longit = document.SelectToken("fields.geolocation.geoPointValue.longitude").ToString();
+                tool.ToolLong = Convert.ToDouble(longit);
+                tool.ToolImage = "hammer.png";
+                
+                
 
                 //Werkzeug objWerkzeug = new Werkzeug();
                 //objWerkzeug.Description = (string) document.SelectToken("fields.description.stringValue").ToString();
@@ -77,15 +122,54 @@ _client.GetAsync()
                 Console.WriteLine("Werkzeug:");
                 Console.WriteLine(tool.ToolDescription + tool.ToolLocation);
                 Console.WriteLine("--------");
+                Console.WriteLine("WerkzeugName " + tool.ToolDatabaseNameSub);
             }
             // ObjWerkzeugListe = JsonConvert.DeserializeObject<WerkzeugListe>(res);
-            listTools.ItemsSource = toolsList;
+           listTools.ItemsSource = toolsList;
+
+           /* var toolIdTest = "projects/sharezeug/databases/(default)/documents/items/zQjXZGR8xqiJK0fD2QQ2";
+            var toolIdTestSub = toolIdTest.Substring(55);
+            var compareTo = availability.ElementAt(0).toolRef;
+            var compareToSub = toolIdTest.Substring(55);
+            Console.WriteLine("compareToSub:" + compareToSub);
+            var compareToFalse = availability.ElementAt(1).toolRef;
+            var compareToFalseSub = compareToFalse.Substring(55);
+
+            if (toolIdTestSub.Equals(compareToSub))
+            {
+                Console.WriteLine("makes sense");
+            }
+            if (toolIdTestSub.Equals(compareToFalseSub))
+            {
+                Console.WriteLine("makes no sense");
+            }
+            ObservableCollection<Availability> availabilityPerTool = new ObservableCollection<Availability>();
+
+            //das erste hat ein leerzeichen vor der id, das zweite nicht, versuch drittes anlegen
+            foreach (Availability av in availability)
+            {
+                var toolNameRef = av.toolRef;
+                Console.WriteLine("toolNameRef:" +toolNameRef);
+                var toolNameRefSub = toolNameRef.Substring(55);
+                if (toolNameRefSub.Equals(toolIdTestSub))
+                {
+                    availabilityPerTool.Add(av);
+                }
+                else
+                {
+                    Console.WriteLine("no match");
+                }
+            }*/
+
+            
+            
+
         }
 
         private async void ListSpeakers_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var details = e.Item as Tool;
-            await Navigation.PushAsync(new ToolDetailPage(details.ToolDescription, details.ToolLocation, details.ToolPrice, details.ToolPriceSpan, details.ToolImage, details.ToolLat, details.ToolLong, details.OwnerPhone));
+            await Navigation.PushAsync(new ToolDetailPage(details.ToolDescription, details.ToolLocation, details.CombinedPrice, details.ToolImage, details.ToolLat, details.ToolLong, details.OwnerPhone, details.ToolDatabaseNameSub, details.minDateUser, details.maxDateUser));
 
         }
 

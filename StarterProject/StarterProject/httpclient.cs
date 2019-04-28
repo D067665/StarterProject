@@ -23,6 +23,13 @@ namespace StarterProject
             string body = await res.Content.ReadAsStringAsync();
             return body;
         }
+        public static async Task<string> getFromFirebaseAvailability()
+        {
+            HttpResponseMessage res = await mClient.GetAsync("https://firestore.googleapis.com/v1/projects/sharezeug/databases/(default)/documents/availability");
+            Console.WriteLine(" statuscode: " + res.StatusCode + " reason: " + res.ReasonPhrase + " content: " + res.Content);
+            string body = await res.Content.ReadAsStringAsync();
+            return body;
+        }
 
         public static async void postItem()
         {

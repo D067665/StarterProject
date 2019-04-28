@@ -88,7 +88,8 @@
                 
 
                 <ScrollView><!-- Margin="10,10,10,0" -->
-                    <ListView x:Name="listTools" ItemsSource="{Binding Tools}" RowHeight="100" ItemTapped="ListSpeakers_ItemTapped" IsPullToRefreshEnabled="True">
+                   <!-- <ListView x:Name="listTools" ItemsSource="{Binding Tools}" RowHeight="100" ItemTapped="ListSpeakers_ItemTapped" IsPullToRefreshEnabled="True">-->
+                        <ListView x:Name="listTools"  RowHeight="100" ItemTapped="ListSpeakers_ItemTapped" IsPullToRefreshEnabled="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <!--<ImageCell Text="{Binding Topic}" TextColor="Purple" Detail="{Binding SpeakerName}" DetailColor="Black" ImageSource="hammer.png" />-->
