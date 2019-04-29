@@ -4,14 +4,11 @@
              xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:local="clr-namespace:StarterProject.ViewModel"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              x:Class="StarterProject.TakePhotoPage"
              Title="Upload">
     <ContentPage.Content>
-
-
         <StackLayout Orientation="Vertical">
-
-
             <Label Text="Share your tool with the world!"    HorizontalOptions="CenterAndExpand"  Margin="0,20,0,30" FontSize="21"/>
             <ScrollView Margin="10,10,10,10">
                 <StackLayout>
@@ -24,9 +21,8 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="50*"/>
                             <ColumnDefinition Width="50*"/>
-                           
                         </Grid.ColumnDefinitions>
-                        <Entry x:Name="Entry_Toolprice" Placeholder="Tool Price" Grid.Column="0"/>
+                            <Entry x:Name="Entry_Toolprice" Placeholder="Tool Price" Grid.Column="0"/>
                         <Picker x:Name="Picker_PriceDetail" Grid.Column="1" SelectedIndexChanged="Picker_PriceDetail_SelectedIndexChanged" Title="Select Range"/>
                     </Grid>
                     <Grid Padding="5,0,0,0">
@@ -45,25 +41,11 @@
                         <DatePicker x:Name="MainDatePicker2" MinimumDate="1/1/2018" MaximumDate="12/31/2020" DateSelected="MainDatePicker_DateSelectedEnd"  Grid.Row="1" Grid.Column="1" />
 
                     </Grid>
-
-                    <!--  <StackLayout>
-                    <Label x:Name="Label_Startdate" FontSize="18"  Text="Select the Start Date" />
-                    <DatePicker x:Name="MainDatePicker" MinimumDate="1/1/2018" MaximumDate="12/31/2020" DateSelected="MainDatePicker_DateSelected" />
-                    <Label x:Name="Label_Enddate" FontSize="18"  Text="Select the End Date" />
-                    <DatePicker x:Name="MainDatePicker2" MinimumDate="1/1/2018" MaximumDate="12/31/2020" DateSelected="MainDatePicker_DateSelectedEnd" />
-                </StackLayout>-->
                     <StackLayout>
-                        <!-- <syncfusion:SfCalendar x:Name="calendar"  SelectionChanged="Calendar_SelectionChanged" SelectionMode="RangeSelection" ViewMode="MonthView" >
-
-                    </syncfusion:SfCalendar>-->
-
-                        
+                       
                         <Label x:Name="Lbl_Photo" Text="Take a Photo of your Tool" FontSize="20"/>
-                        <Frame x:Name="Frame_Image" OutlineColor="DarkSlateGray"  HorizontalOptions = "Center" HeightRequest="250" WidthRequest="300" >
-                            
-                                <Image x:Name="image" HeightRequest="240" Source="camera.PNG"/>
-                            
-
+                        <Frame x:Name="Frame_Image" OutlineColor="DarkSlateGray"  HorizontalOptions = "Center" HeightRequest="200" WidthRequest="300" >
+                            <Image x:Name="image" HeightRequest="240" Source="camera.PNG"/>
                         </Frame>
                         <Grid  >
                             <Grid.RowDefinitions>
@@ -77,8 +59,8 @@
                             <Button x:Name="Btn_TakePhoto" Text="Take a Photo" TextColor="White" BackgroundColor="#7E6C94" Clicked="Btn_TakePhoto_Clicked"  Grid.Column="0"/>
                             <Button x:Name="Btn_RemoveImage" Text="Remove" BackgroundColor="#FFAD26" Clicked="Btn_RemoveImage_Clicked" Grid.Column="1"/>
                         </Grid>
-                       <!-- <Label x:Name="Label_Path" FontSize="16" />-->
                     </StackLayout>
+                        <Entry x:Name="Entry_Ownerphone"  Placeholder="Phone Number"/>
                     <Editor x:Name="Editor_Comments" Placeholder="Add any Comments" AutoSize="TextChanges"/>
                 </StackLayout>
             </ScrollView>
