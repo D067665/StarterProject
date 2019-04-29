@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarterProject.iOS", "Start
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarterProject.UWP", "StarterProject\StarterProject.UWP\StarterProject.UWP.csproj", "{270BA245-E658-4A9B-9C11-C298DB2ADB99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarterProject", "StarterProject\StarterProject\StarterProject.csproj", "{E3814254-115C-4669-B102-029DBBEC1F79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarterProject", "StarterProject\StarterProject\StarterProject.csproj", "{E3814254-115C-4669-B102-029DBBEC1F79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
