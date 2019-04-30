@@ -26,6 +26,7 @@ namespace UsingDependencyService.Android
             mAuth = FirebaseAuth.Instance;
             IAuthResult result = await mAuth.CreateUserWithEmailAndPasswordAsync(email, password);
             var token = await result.User.GetIdTokenAsync(false);
+            Xamarin.Forms.Application.Current.Properties["uid"] = result.User.Uid;
             return token.Token;
             Console.WriteLine(result);
         }
