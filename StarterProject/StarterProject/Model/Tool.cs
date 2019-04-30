@@ -11,6 +11,7 @@ namespace StarterProject.Model
         public double ToolPrice { get; set; }
         public string ToolPriceSpan { get; set; }
         public string ToolImage { get; set; }
+        public string ToolUid { get; set; }
         public double ToolLong { get; set; }
         public double ToolLat { get; set; }
         public string OwnerPhone { get; set; }
