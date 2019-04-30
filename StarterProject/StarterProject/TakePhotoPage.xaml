@@ -22,7 +22,7 @@
                             <ColumnDefinition Width="50*"/>
                             <ColumnDefinition Width="50*"/>
                         </Grid.ColumnDefinitions>
-                            <Entry x:Name="Entry_Toolprice" Placeholder="Tool Price" Grid.Column="0"/>
+                            <Entry x:Name="Entry_Toolprice" Placeholder="Tool Price" Keyboard="Numeric" Grid.Column="0"/>
                         <Picker x:Name="Picker_PriceDetail" Grid.Column="1" SelectedIndexChanged="Picker_PriceDetail_SelectedIndexChanged" Title="Select Range"/>
                     </Grid>
                     <Grid Padding="5,0,0,0">
@@ -60,7 +60,7 @@
                             <Button x:Name="Btn_RemoveImage" Text="Remove" BackgroundColor="#FFAD26" Clicked="Btn_RemoveImage_Clicked" Grid.Column="1"/>
                         </Grid>
                     </StackLayout>
-                        <Entry x:Name="Entry_Ownerphone"  Placeholder="Phone Number"/>
+                        <Entry x:Name="Entry_Ownerphone"  Placeholder="Phone Number" Keyboard="Telephone"/>
                     <Editor x:Name="Editor_Comments" Placeholder="Add any Comments" AutoSize="TextChanges"/>
                 </StackLayout>
             </ScrollView>

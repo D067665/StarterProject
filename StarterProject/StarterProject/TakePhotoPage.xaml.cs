@@ -87,8 +87,7 @@ namespace StarterProject
 
             
             if(string.IsNullOrEmpty(Entry_Toolname.Text) || string.IsNullOrEmpty(Entry_Toollocation.Text) || string.IsNullOrEmpty(Entry_Toolprice.Text) || string.IsNullOrEmpty(Entry_Ownerphone.Text)
-                || Picker_PriceDetail.SelectedIndex == -1 || string.IsNullOrEmpty(Editor_Comments.Text)
-                )
+                || Picker_PriceDetail.SelectedIndex == -1  )
             {
                 
                 await DisplayAlert("Info Missing", "Please fill out the missing information", "OK");
