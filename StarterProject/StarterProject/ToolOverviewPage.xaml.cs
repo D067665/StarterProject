@@ -28,7 +28,8 @@ namespace StarterProject
 
         //SpeakerViewModel vm;
         ToolViewModel tvm;
-        public IEnumerable<Tool> searchResults;
+        ObservableCollection<Tool> toolsList;
+
 
         public ToolOverviewPage ()
 		{
@@ -49,6 +50,7 @@ _client.GetAsync()
             //  fbclient.Child("items").
 
             loadItems();
+            
 
         }
 
@@ -62,7 +64,7 @@ _client.GetAsync()
             Console.WriteLine("Json: " + json);
 
             List<Werkzeug> objWerkzeugliste = new List<Werkzeug>();
-            ObservableCollection<Tool> toolsList = new ObservableCollection<Tool>();
+            toolsList = new ObservableCollection<Tool>();
 
             ObservableCollection <Availability> availability = new ObservableCollection<Availability>();
             //IEnumerable<JToken> documentsAv = jsonAv.SelectTokens("documents.fields").Where(s => (string)s["test"] == "test1");
@@ -126,6 +128,7 @@ _client.GetAsync()
             }
             // ObjWerkzeugListe = JsonConvert.DeserializeObject<WerkzeugListe>(res);
            listTools.ItemsSource = toolsList;
+            
 
            /* var toolIdTest = "projects/sharezeug/databases/(default)/documents/items/zQjXZGR8xqiJK0fD2QQ2";
             var toolIdTestSub = toolIdTest.Substring(55);
@@ -191,14 +194,16 @@ _client.GetAsync()
         private void Button_Clicked(object sender, EventArgs e)
         {
             //Navigation.PushAsync(new GeoPage());
-            Navigation.PushAsync(new MapOverviewPage(searchResults));
+            Navigation.PushAsync(new MapOverviewPage((IEnumerable<Tool>)listTools.ItemsSource));
 
         }
 
         private void Btn_Search_Clicked(object sender, EventArgs e)
         {
-            var container = BindingContext as ToolViewModel;
-             searchResults =  (IEnumerable<Tool>)listTools.ItemsSource;
+            //var container = BindingContext as ToolViewModel;
+           // var tools = container.Tools;
+            
+            var searchResults =  (IEnumerable<Tool>)listTools.ItemsSource;
             string searchValueToolDescription = SfEntry_ToolType.Text ?? "";
             var searchValueToolLocation = SfEntry_ToolLocation.Text ?? "";
             
@@ -206,56 +211,42 @@ _client.GetAsync()
            
 
             int searchValueToolPriceInt = 0;
-
             if (searchValueToolPrice.Equals(""))
             {
-                searchResults = container.Tools.Where(i => (i.ToolDescription).Contains(searchValueToolDescription)
+                searchResults = toolsList.Where(i => (i.ToolDescription).Contains(searchValueToolDescription)
             && (i.ToolLocation).Contains(searchValueToolLocation));
-            
+
 
             }
             else
             {
                 searchValueToolPriceInt = int.Parse(searchValueToolPrice);
-                searchResults = container.Tools.Where(i => (i.ToolDescription).Contains(searchValueToolDescription)
+                searchResults = toolsList.Where(i => (i.ToolDescription).Contains(searchValueToolDescription)
             && (i.ToolLocation).Contains(searchValueToolLocation)
             && (i.ToolPrice <= searchValueToolPriceInt));
             }
 
 
-            // listTools.BeginRefresh();
-            /* listTools.ItemsSource = container.Tools.Where(i => i.ToolDescription.Contains(searchValueToolDescription));
-
-             listTools.ItemsSource = container.Tools.Where(i => i.ToolLocation.Contains(searchValueToolLocation));*/
-            
-
-
-            
-
             listTools.ItemsSource = searchResults;
-
-
-             /*  listTools.ItemsSource = container.Tools.Where(i => i.ToolDescription.Contains(searchValueToolDescription)
-                && i.ToolLocation.Contains(searchValueToolLocation)
-                && i.ToolPrice.Contains(searchValueToolPrice));*/
-
-            //listTools.EndRefresh();
+            listTools.EndRefresh();
             IsBackLayerRevealed = Convert.ToBoolean("False");
-           // var count = (listTools.ItemsSource as List<Tool>).Count;
-           /* if ((listTools.ItemsSource as List<Tool>).Count == 0)
+            int count = searchResults.Count<Tool>();
+            
+            //var count = (listTools.ItemsSource as List<Tool>).Count;
+           if (count == 0)
             {
                 Lbl_ToolSearchIntro.Text = "Unfortunatly, there were no matches";
-                Lbl_ToolSearchIntro.FontSize = 18;
-            }*/
+                Lbl_ToolSearchIntro.FontSize = 16;
+            }
+            else
+            {
+                Lbl_ToolSearchIntro.Text = "Find the Tool you need";
+            }
             
 
         }
 
-        private void Btn_DeleteEntry_Clicked(object sender, EventArgs e)
-        {
-            //SfEntry_ToolType.Text = "";
-
-        }
+        
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {

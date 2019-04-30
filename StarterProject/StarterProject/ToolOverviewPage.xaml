@@ -83,7 +83,7 @@
 
     <backdrop:SfBackdropPage.FrontLayer>
         <backdrop:BackdropFrontLayer>
-            <StackLayout BackgroundColor="WhiteSmoke" VerticalOptions="FillAndExpand">
+            <StackLayout BackgroundColor="WhiteSmoke" VerticalOptions="FillAndExpand" >
                 <Label x:Name="Lbl_ToolSearchIntro" Text="Find the Tool you need" FontSize="34"/>
                 
 
