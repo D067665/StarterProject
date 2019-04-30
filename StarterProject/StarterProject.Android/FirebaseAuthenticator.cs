@@ -29,6 +29,7 @@ namespace UsingDependencyService.Android
             var user = await FirebaseAuth.Instance.
                             SignInWithEmailAndPasswordAsync(email, password);
             var token = await user.User.GetIdTokenAsync(false);
+            Xamarin.Forms.Application.Current.Properties["uid"] = user.User.Uid;
             /*
             FirestoreService.Instance.Collection("items").
             var doc = FirebaseFirestore.Instance.Document("items").Get();
