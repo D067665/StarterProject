@@ -43,10 +43,6 @@ namespace StarterProject
             string strResultJson = JsonConvert.SerializeObject(tool);
             Console.WriteLine(strResultJson);
             File.WriteAllText(@"student.json", strResultJson);
-
-
-
-
         }
     }
 }
