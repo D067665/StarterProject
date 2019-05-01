@@ -26,7 +26,7 @@ namespace StarterProject
             Label_ToolPrice.Text = CombinedPrice;
             Image_Tool.Source = ToolImage;
             Label_Startdate.Text = "From " + MinUserDate.ToString("dd/MM/yyyy");
-            Label_Enddate.Text = "Till " + MaxUserDate.ToString("dd/MM/yyyy");
+            Label_Enddate.Text = "till " + MaxUserDate.ToString("dd/MM/yyyy");
             MapDetail.MoveToRegion(
               MapSpan.FromCenterAndRadius(
                   new Position(ToolLat, ToolLong), Distance.FromKilometers(1)));
