@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace StarterProject.Model
+
 {
-    class Availability
+    //Class for Availabilities from BackEnd, show when a tool is booked
+    public class Availability
     {
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }

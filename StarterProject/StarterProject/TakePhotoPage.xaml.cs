@@ -23,11 +23,6 @@ namespace StarterProject
             Picker_PriceDetail.Items.Add("per Day");
             Picker_PriceDetail.Items.Add("per Week");
             Picker_PriceDetail.Items.Add("per Month");
-
-
-
-
-
         }
         private void MainDatePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
@@ -37,10 +32,6 @@ namespace StarterProject
         {
             // MainLabel.Text = e.NewDate.ToLongDateString();
         }
-
-
-
-
 
         private async void Btn_TakePhoto_Clicked(object sender, EventArgs e)
         {
@@ -113,12 +104,6 @@ namespace StarterProject
             }
             
 
-
-
-
-           /* Console.WriteLine("Lat: " + position.Latitude + "Long: " + position.Longitude);
-            await DisplayAlert("Thank you!", "You successfully uploaded your Tool to share it with the Community." + position.Latitude + position.Longitude, "Ok");
-            await Navigation.PushAsync(new LandingPage());*/
 
         }
 

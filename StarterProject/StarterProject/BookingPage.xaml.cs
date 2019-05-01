@@ -17,7 +17,10 @@ namespace StarterProject
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class BookingPage : ContentPage
 	{
-        
+
+        DateTime startDate;
+        DateTime endDate;
+        string itemName;
         public BookingPage (string ToolDescription, string ToolLocation, string ToolPrice, string ToolImage, string ToolDatabaseNameSub, DateTime minDateUser, DateTime maxDateUser)
 		{
 			InitializeComponent ();
@@ -26,6 +29,7 @@ namespace StarterProject
             Label_ToolPrice.Text = ToolPrice;
             //create calender range
             SetMinMaxRange(minDateUser, maxDateUser);
+            itemName = ToolDatabaseNameSub;
             //Load all availabilities and create blackout lists
             loadAvailabilities(ToolDatabaseNameSub);
             
@@ -57,7 +61,7 @@ namespace StarterProject
 
 
         private async void loadAvailabilities(string ToolDatabaseNameSub)
-        { //lade ALLE Availabilities
+        { //load Availabilities
             var toolDBName = ToolDatabaseNameSub;
             string resAvailability = await httpclient.getFromFirebaseAvailability();
             JObject jsonAv = JObject.Parse(resAvailability);
@@ -126,7 +130,7 @@ namespace StarterProject
             {
                 var startDateObj = (Syncfusion.SfCalendar.XForms.SelectionRange) sender.SelectedRange;
                 
-                var startDate = startDateObj.StartDate.Date;
+                startDate = startDateObj.StartDate.Date;
                 //just include date, not time
                 //**ERROR not doing 04/06/2019 but 4/6/2019 so substring sometimes is wrong
                 //var justStartDate = startDate.Substring(0, 10);
@@ -134,7 +138,7 @@ namespace StarterProject
                 //DateTime startDateDate = DateTime.Parse(justStartDate);
                 
                 var endDateObj = (Syncfusion.SfCalendar.XForms.SelectionRange)sender.SelectedRange;
-                var endDate = endDateObj.EndDate.Date;
+                endDate = endDateObj.EndDate.Date;
                 //just include date, not time
                 //var justEndDate = endDate.Substring(0, 10);
                 //DateTime endDateDate = DateTime.Parse(justEndDate);
@@ -152,8 +156,25 @@ namespace StarterProject
 
         private async void Btn_Book_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Great!", "You successfully booked the Tool from " + Label_Start.Text + "to " + Label_End.Text, "Ok");
-            await Navigation.PushAsync(new LandingPage());
+            if (string.Equals("Start", Label_Start.Text) || string.Equals("End", Label_End.Text))
+
+            {
+
+                await DisplayAlert("Info Missing", "Please fill out the Booking Range", "OK");
+
+            }
+            else
+            {
+                //Post
+                string uid = (string)Application.Current.Properties["uid"];
+
+                string jsonstring = "{'fields': {'end': { 'timestampValue': '" + endDate.Date.ToString("yyyy-MM-dd") + "T" + endDate.Date.ToString("HH:mm:ss") + "Z" + "' }, 'start': { 'timestampValue': '" + startDate.Date.ToString("yyyy-MM-dd") + "T" + startDate.Date.ToString("HH:mm:ss") + "Z" + "' }, 'item': { 'referenceValue': '" + "projects/sharezeug/databases/(default)/documents/items/" + itemName + "' }, 'uid': { 'stringValue': '" + uid + "'}}}";
+                JObject mjObject = new JObject();
+                mjObject = JObject.Parse(jsonstring);
+                httpclient.postAvailability(mjObject);
+                await DisplayAlert("Great!", "You successfully booked the Tool from " + Label_Start.Text + "to " + Label_End.Text, "Ok");
+                await Navigation.PushAsync(new LandingPage());
+            }
 
         }
     }

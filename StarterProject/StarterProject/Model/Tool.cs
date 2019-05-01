@@ -4,6 +4,7 @@ using System.Text;
 
 namespace StarterProject.Model
 {
+    //class for Item from Backend
     public class Tool
     {
         public string ToolDescription { get; set; }
@@ -27,7 +28,7 @@ namespace StarterProject.Model
         }
         public string ToolDatabaseNameSub { get; set; }
 
-        public List<Tool> GetSpeakers()
+        /*public List<Tool> GetSpeakers()
         {
             List<Tool> tools = new List<Tool>()
             {
@@ -41,7 +42,7 @@ namespace StarterProject.Model
 
             };
             return tools;
-        }
+        }*/
 
     }
 }
