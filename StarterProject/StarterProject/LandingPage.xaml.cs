@@ -40,10 +40,6 @@ namespace StarterProject
 
         }
 
-        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new GeoPage());
-
-        }
+       
     }
 }

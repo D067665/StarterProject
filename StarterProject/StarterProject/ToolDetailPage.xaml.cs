@@ -57,12 +57,5 @@ namespace StarterProject
 
         }
 
-
-        /* public ToolDetailPage()
-{
-
-
-}*/
-
     }
 }

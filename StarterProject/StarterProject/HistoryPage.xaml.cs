@@ -21,18 +21,19 @@ namespace StarterProject
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class HistoryPage : Xamarin.Forms.TabbedPage
     {
-        ToolViewModel tvm;
+        //ToolViewModel tvm;
         ObservableCollection<Tool> toolsList;
         List<Availability> availabilityList;
         ObservableCollection<Tool> showAvailability;
+       
 
         public HistoryPage ()
 		{
 			InitializeComponent ();
             this.On<Xamarin.Forms.PlatformConfiguration.Android>().SetIsSwipePagingEnabled(false);
-            tvm = new ToolViewModel();
+            //tvm = new ToolViewModel();
 
-            BindingContext = tvm;
+           // BindingContext = tvm;
             
             loadItems();
 
@@ -47,10 +48,11 @@ namespace StarterProject
             // Console.WriteLine(res);
             Console.WriteLine("Json: " + json);
 
-            List<Werkzeug> objWerkzeugliste = new List<Werkzeug>();
+            //List<Werkzeug> objWerkzeugliste = new List<Werkzeug>();
             toolsList = new ObservableCollection<Tool>();
             availabilityList = new List<Availability>();
             showAvailability = new ObservableCollection<Tool>();
+            
 
             IEnumerable<JToken> documents = json.SelectTokens("documents[*]");
             IEnumerable<JToken> documentsAv = jsonAv.SelectTokens("documents[*]");
@@ -109,9 +111,13 @@ namespace StarterProject
 
                 foreach (Availability avail in availabilityList)
                 {
+                   
                     if (avail.toolRef == tool.ToolDatabaseNameSub)
                     {
+
                         showAvailability.Add(tool);
+                        
+                        
                     }
                 }
 

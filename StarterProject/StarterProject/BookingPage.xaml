@@ -33,7 +33,7 @@
 
                     </Grid>
                     <StackLayout>
-                        <Label x:Name="Label_CalenderIntro" Text="Select the Range to book the tool" FontSize="25"/>
+                        <Label x:Name="Label_CalenderIntro" Text="Select a Booking Range" FontSize="25"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50*"/>
@@ -42,8 +42,12 @@
                             <Label x:Name="Label_Start" Text="Start" Grid.Column="0" FontSize="20"/>
                             <Label x:Name="Label_End" Text="End" Grid.Column="1" FontSize="20"/>
                         </Grid>
-                        <syncfusion:SfCalendar x:Name="calendar" Margin="10,30,10,10" SelectionMode="RangeSelection" SelectionChanged="Calendar_SelectionChanged"/>
-                       
+                        <syncfusion:SfCalendar x:Name="calendar" Margin="10,30,10,10" ShowYearView="False" SelectionMode="RangeSelection" SelectionChanged="Calendar_SelectionChanged" >
+                            <syncfusion:SfCalendar.MonthViewSettings>
+                                <syncfusion:MonthViewSettings BlackoutColor="#7E6C94"/>
+                            </syncfusion:SfCalendar.MonthViewSettings>
+                        </syncfusion:SfCalendar>
+
                     </StackLayout>
                 </StackLayout>
             </ScrollView>

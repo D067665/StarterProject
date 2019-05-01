@@ -27,18 +27,18 @@ namespace StarterProject
     {
 
         //SpeakerViewModel vm;
-        ToolViewModel tvm;
+        //ToolViewModel tvm;
         ObservableCollection<Tool> toolsList;
 
 
         public ToolOverviewPage ()
 		{
 			InitializeComponent();
-            tvm = new ToolViewModel();
+           // tvm = new ToolViewModel();
             //vm = new SpeakerViewModel();
             //listSpeakers.ItemsSource = vm.Speakers;
             //BindingContext = vm;
-            BindingContext = tvm;
+            //BindingContext = tvm;
             /*
 string token = (string)Xamarin.Forms.Application.Current.Properties["token"];
 
@@ -63,7 +63,7 @@ _client.GetAsync()
             // Console.WriteLine(res);
             Console.WriteLine("Json: " + json);
 
-            List<Werkzeug> objWerkzeugliste = new List<Werkzeug>();
+            
             toolsList = new ObservableCollection<Tool>();
 
             ObservableCollection <Availability> availability = new ObservableCollection<Availability>();
@@ -72,20 +72,6 @@ _client.GetAsync()
             IEnumerable<JToken> documentsAv = jsonAv.SelectTokens("documents[*]");
 
             
-           /* foreach (JToken documentAv in documentsAv)
-            {
-                Availability availabilityTool = new Availability();
-                availabilityTool.startDate = DateTime.Parse((string)documentAv.SelectToken("fields.start.timestampValue").ToString());
-                availabilityTool.endDate = DateTime.Parse((string)documentAv.SelectToken("fields.end.timestampValue").ToString());
-                availabilityTool.toolRef = (string)documentAv.SelectToken("fields.item.referenceValue").ToString();
-                Console.WriteLine("ToolRef: " + availabilityTool.toolRef);
-                availability.Add(availabilityTool);
-                Console.WriteLine("WerkzeugAvail:");
-                Console.WriteLine("Avail: " + availabilityTool.startDate + availabilityTool.endDate);
-                Console.WriteLine("--------");
-                
-            }
-            Console.WriteLine(availability);*/
 
            
             foreach (JToken document in documents)
@@ -115,56 +101,16 @@ _client.GetAsync()
                 
                 
 
-                //Werkzeug objWerkzeug = new Werkzeug();
-                //objWerkzeug.Description = (string) document.SelectToken("fields.description.stringValue").ToString();
-                //objWerkzeug.Location = (string)document.SelectToken("fields.location.stringValue").ToString();
-
-                //objWerkzeugliste.Add(objWerkzeug);
+                
                 toolsList.Add(tool);
                 Console.WriteLine("Werkzeug:");
                 Console.WriteLine(tool.ToolDescription + tool.ToolLocation);
                 Console.WriteLine("--------");
                 Console.WriteLine("WerkzeugName " + tool.ToolDatabaseNameSub);
             }
-            // ObjWerkzeugListe = JsonConvert.DeserializeObject<WerkzeugListe>(res);
+            
            listTools.ItemsSource = toolsList;
-            
-
-           /* var toolIdTest = "projects/sharezeug/databases/(default)/documents/items/zQjXZGR8xqiJK0fD2QQ2";
-            var toolIdTestSub = toolIdTest.Substring(55);
-            var compareTo = availability.ElementAt(0).toolRef;
-            var compareToSub = toolIdTest.Substring(55);
-            Console.WriteLine("compareToSub:" + compareToSub);
-            var compareToFalse = availability.ElementAt(1).toolRef;
-            var compareToFalseSub = compareToFalse.Substring(55);
-
-            if (toolIdTestSub.Equals(compareToSub))
-            {
-                Console.WriteLine("makes sense");
-            }
-            if (toolIdTestSub.Equals(compareToFalseSub))
-            {
-                Console.WriteLine("makes no sense");
-            }
-            ObservableCollection<Availability> availabilityPerTool = new ObservableCollection<Availability>();
-
-            //das erste hat ein leerzeichen vor der id, das zweite nicht, versuch drittes anlegen
-            foreach (Availability av in availability)
-            {
-                var toolNameRef = av.toolRef;
-                Console.WriteLine("toolNameRef:" +toolNameRef);
-                var toolNameRefSub = toolNameRef.Substring(55);
-                if (toolNameRefSub.Equals(toolIdTestSub))
-                {
-                    availabilityPerTool.Add(av);
-                }
-                else
-                {
-                    Console.WriteLine("no match");
-                }
-            }*/
-
-            
+          
             
 
         }
@@ -176,20 +122,7 @@ _client.GetAsync()
 
         }
 
-        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var container = BindingContext as ToolViewModel;
-            
-            listTools.BeginRefresh(); 
-
-            if (string.IsNullOrWhiteSpace(e.NewTextValue))
-                listTools.ItemsSource = container.Tools;
-            else
-                listTools.ItemsSource = container.Tools.Where(i => i.ToolDescription.Contains(e.NewTextValue));
-
-            listTools.EndRefresh();
-
-        }
+       
 
         private void Button_Clicked(object sender, EventArgs e)
         {
@@ -200,8 +133,7 @@ _client.GetAsync()
 
         private void Btn_Search_Clicked(object sender, EventArgs e)
         {
-            //var container = BindingContext as ToolViewModel;
-           // var tools = container.Tools;
+            
             
             var searchResults =  (IEnumerable<Tool>)listTools.ItemsSource;
             string searchValueToolDescription = SfEntry_ToolType.Text ?? "";
@@ -232,7 +164,7 @@ _client.GetAsync()
             IsBackLayerRevealed = Convert.ToBoolean("False");
             int count = searchResults.Count<Tool>();
             
-            //var count = (listTools.ItemsSource as List<Tool>).Count;
+            
            if (count == 0)
             {
                 Lbl_ToolSearchIntro.Text = "Unfortunatly, there were no matches";
@@ -242,6 +174,7 @@ _client.GetAsync()
             {
                 Lbl_ToolSearchIntro.Text = "Find the Tool you need";
             }
+           
             
 
         }

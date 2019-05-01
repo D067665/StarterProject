@@ -7,15 +7,7 @@
              x:Class="StarterProject.ToolDetailPage"
              Title="Booking">
     <ContentPage.Content>
-       <!-- <StackLayout Margin="10,10,10,10">
-            <Image x:Name="Image_Tool" HeightRequest="100" WidthRequest="100"/>
-            <Label x:Name="Label_ToolDescription" HorizontalTextAlignment="Center"/>
-            <Label x:Name="Label_ToolLocation" HorizontalTextAlignment="Center"/>
-            <Label x:Name="Label_ToolPrice" HorizontalTextAlignment="Center"/>
-
-
-        </StackLayout>-->
-        
+      
             <StackLayout Orientation="Vertical" Margin="10,10,10,10">
             <ScrollView Margin="10,10,10,0">
                 <StackLayout>
