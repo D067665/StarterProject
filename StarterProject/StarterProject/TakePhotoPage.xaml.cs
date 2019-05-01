@@ -17,6 +17,7 @@ namespace StarterProject
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TakePhotoPage : ContentPage
     {
+        
         public TakePhotoPage()
         {
             InitializeComponent();
@@ -78,13 +79,19 @@ namespace StarterProject
 
 
 
-            if(string.IsNullOrEmpty(Entry_Toolname.Text) || string.IsNullOrEmpty(Entry_Toollocation.Text) || string.IsNullOrEmpty(Entry_Toolprice.Text) || string.IsNullOrEmpty(Entry_Ownerphone.Text)
+            var dateCompare = DateTime.Compare(MainDatePicker.Date, MainDatePicker2.Date);
+            if (string.IsNullOrEmpty(Entry_Toolname.Text) || string.IsNullOrEmpty(Entry_Toollocation.Text) || string.IsNullOrEmpty(Entry_Toolprice.Text) || string.IsNullOrEmpty(Entry_Ownerphone.Text)
                 || Picker_PriceDetail.SelectedIndex == -1  )
             {
 
                 await DisplayAlert("Info Missing", "Please fill out the missing information", "OK");
 
-            }else
+            }else if(dateCompare>0){
+
+                await DisplayAlert("Info Wrong", "Your Dates are mixed up", "OK");
+
+            }
+            else
             {
                 var locator = CrossGeolocator.Current;
                 locator.DesiredAccuracy = 50;

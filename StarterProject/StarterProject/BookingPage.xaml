@@ -64,7 +64,7 @@
                     <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
                 <buttons:SfButton x:Name="Btn_Book"
-                              Text="Book" ShowIcon="True" ImageSource="map.PNG" MinimumHeightRequest="30" MinimumWidthRequest="30"
+                              Text="Book" ShowIcon="True" ImageSource="calenderPurple.PNG" MinimumHeightRequest="30" MinimumWidthRequest="30"
                               BackgroundColor="White" BorderColor="#7E6C94" TextColor="Black" BorderWidth="1"
                               FontSize="16"  Grid.Column="1" Clicked="Btn_Book_Clicked"/>
             </Grid>
