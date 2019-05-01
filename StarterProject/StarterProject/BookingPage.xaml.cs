@@ -155,7 +155,7 @@ namespace StarterProject
                 JObject mjObject = new JObject();
                 mjObject = JObject.Parse(jsonstring);
                 httpclient.postAvailability(mjObject);
-                await DisplayAlert("Great!", "You successfully booked the Tool from " + Label_Start.Text + "to " + Label_End.Text, "Ok");
+                await DisplayAlert("Great!", "You successfully booked the Tool from " + Label_Start.Text + " to " + Label_End.Text, "Ok");
                 await Navigation.PushAsync(new LandingPage());
             }
 

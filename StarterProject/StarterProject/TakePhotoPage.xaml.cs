@@ -53,7 +53,7 @@ namespace StarterProject
             if (file == null)
                 return;
              
-            await DisplayAlert("File Location", file.Path, "OK");
+            //await DisplayAlert("File Location", file.Path, "OK");
 
             image.Source = ImageSource.FromStream(() =>
             {
@@ -106,7 +106,7 @@ namespace StarterProject
                 mjObject = JObject.Parse(jsonstring);
                 httpclient.postItem(mjObject);
 
-                await DisplayAlert("Thank you!", "You successfully uploaded your Tool to share it with the Community." + position.Latitude + position.Longitude, "Ok");
+                await DisplayAlert("Thank you!", "You successfully uploaded your Tool to share it with the Community.", "Ok");
 
                 await Navigation.PushAsync(new LandingPage());
             }
