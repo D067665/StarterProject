@@ -41,23 +41,21 @@ namespace StarterProject
 
         private async void loadItems()
         {
+            //get items and availabilities
             string res = await httpclient.getFromFirebase();
             string resAvailability = await httpclient.getFromFirebaseAvailability();
             JObject json = JObject.Parse(res);
             JObject jsonAv = JObject.Parse(resAvailability);
-            // Console.WriteLine(res);
-            Console.WriteLine("Json: " + json);
-
-            //List<Werkzeug> objWerkzeugliste = new List<Werkzeug>();
+            
             toolsList = new ObservableCollection<Tool>();
             availabilityList = new List<Availability>();
             showAvailability = new ObservableCollection<Tool>();
             
-
             IEnumerable<JToken> documents = json.SelectTokens("documents[*]");
             IEnumerable<JToken> documentsAv = jsonAv.SelectTokens("documents[*]");
             string uid = (string) Xamarin.Forms.Application.Current.Properties["uid"];
 
+            //get tools that you loaned
             foreach (JToken document in documentsAv)
             {
                 Availability availability = new Availability();
@@ -75,8 +73,8 @@ namespace StarterProject
 
             }
 
-
-                foreach (JToken document in documents)
+            //get tools that you published
+            foreach (JToken document in documents)
             {
 
                 Tool tool = new Tool();
@@ -111,18 +109,17 @@ namespace StarterProject
 
                 foreach (Availability avail in availabilityList)
                 {
-                   
                     if (avail.toolRef == tool.ToolDatabaseNameSub)
                     {
 
                         showAvailability.Add(tool);
-                        
-                        
+                       
                     }
                 }
 
             }
 
+            //save for display
             historyListTool.ItemsSource = toolsList;
             LoanedView.ItemsSource = showAvailability;
         }
@@ -137,6 +134,7 @@ namespace StarterProject
 
             var historyTool = (StarterProject.Model.Tool) e.ItemData;
             
+            //delete item after swipe
             if (e.SwipeOffset > 70) {
                 httpclient.deleteItem(historyTool.ToolDatabaseNameSub);
                 historyListTool.ResetSwipe();

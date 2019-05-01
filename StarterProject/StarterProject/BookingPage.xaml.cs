@@ -27,15 +27,13 @@ namespace StarterProject
             Label_ToolDescription.Text = ToolDescription;
             Label_ToolLocation.Text = ToolLocation;
             Label_ToolPrice.Text = ToolPrice;
+
             //create calender range
             SetMinMaxRange(minDateUser, maxDateUser);
             itemName = ToolDatabaseNameSub;
+
             //Load all availabilities and create blackout lists
             loadAvailabilities(ToolDatabaseNameSub);
-            
-
-
-
         }
 
         //set Range that owner published at min, max date 
@@ -76,12 +74,7 @@ namespace StarterProject
                 availabilityTool.startDate = DateTime.Parse((string)documentAv.SelectToken("fields.start.timestampValue").ToString());
                 availabilityTool.endDate = DateTime.Parse((string)documentAv.SelectToken("fields.end.timestampValue").ToString());
                 availabilityTool.toolRef = (string)documentAv.SelectToken("fields.item.referenceValue").ToString();
-                Console.WriteLine("ToolRef: " + availabilityTool.toolRef);
                 availability.Add(availabilityTool);
-                Console.WriteLine("WerkzeugAvail:");
-                Console.WriteLine("Avail: " + availabilityTool.startDate + availabilityTool.endDate);
-                Console.WriteLine("--------");
-
             }
             Console.WriteLine(availability);
 
@@ -127,22 +120,14 @@ namespace StarterProject
             
            
             if (sender.SelectedRange != null)
-            {
+            {   //access to selectedRange
                 var startDateObj = (Syncfusion.SfCalendar.XForms.SelectionRange) sender.SelectedRange;
                 
                 startDate = startDateObj.StartDate.Date;
-                //just include date, not time
-                //**ERROR not doing 04/06/2019 but 4/6/2019 so substring sometimes is wrong
-                //var justStartDate = startDate.Substring(0, 10);
-                //convert to DateTime to enable Substract method later on
-                //DateTime startDateDate = DateTime.Parse(justStartDate);
-                
+
                 var endDateObj = (Syncfusion.SfCalendar.XForms.SelectionRange)sender.SelectedRange;
                 endDate = endDateObj.EndDate.Date;
-                //just include date, not time
-                //var justEndDate = endDate.Substring(0, 10);
-                //DateTime endDateDate = DateTime.Parse(justEndDate);
-                //get all dates inbetween - store it that way , or convert it when displying
+
                 var dateRange= Enumerable.Range(0, 1 + endDate.Subtract(startDate).Days)
                 .Select(offset => startDate.AddDays(offset))
                 .ToArray();
@@ -159,9 +144,7 @@ namespace StarterProject
             if (string.Equals("Start", Label_Start.Text) || string.Equals("End", Label_End.Text))
 
             {
-
                 await DisplayAlert("Info Missing", "Please fill out the Booking Range", "OK");
-
             }
             else
             {
