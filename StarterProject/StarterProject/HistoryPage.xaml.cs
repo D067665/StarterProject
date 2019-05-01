@@ -100,7 +100,7 @@ namespace StarterProject
                 tool.ToolLat = Convert.ToDouble(lat);
                 var longit = document.SelectToken("fields.geolocation.geoPointValue.longitude").ToString();
                 tool.ToolLong = Convert.ToDouble(longit);
-                tool.ToolImage = "hammer.png";
+                tool.ToolImage = "https://firebasestorage.googleapis.com/v0/b/sharezeug.appspot.com/o/ItemsPhotos%2F" + tool.ToolDatabaseNameSub + ".jpg?alt=media";//tool.ToolDatabaseNameSub+".jpg";
 
                 if (tool.ToolUid != null && uid == tool.ToolUid)
                 {

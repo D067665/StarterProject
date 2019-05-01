@@ -39,7 +39,6 @@ namespace StarterProject
             //vm = new SpeakerViewModel();
             //listSpeakers.ItemsSource = vm.Speakers;
             //BindingContext = vm;
-            BindingContext = tvm;
 
             loadItems();
 
