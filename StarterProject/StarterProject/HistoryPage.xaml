@@ -6,6 +6,9 @@
             Title="History"
             x:Class="StarterProject.HistoryPage"
             >
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Text="New" Icon="logo.png" Priority="0" Order="Primary"/>
+    </TabbedPage.ToolbarItems>
     <ContentPage Title="Loaned Tools">
         <ContentPage.Content>
             <StackLayout VerticalOptions="Center">

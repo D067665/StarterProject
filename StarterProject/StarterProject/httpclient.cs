@@ -38,20 +38,13 @@ namespace StarterProject
             var result = await mClient.PostAsync("https://firestore.googleapis.com/v1/projects/sharezeug/databases/(default)/documents/items", content);
             Console.WriteLine(result.StatusCode + result.ReasonPhrase);
             //HttpContent mContent = new HttpContent();
-
             // HttpResponseMessage res = await mClient.PostAsync("https://firestore.googleapis.com/v1/projects/sharezeug/databases/(default)/documents/items", "test");
         }
-
-        public static async void postAvailability(JObject mjObject)
+        public static async void deleteItem(string docname)
         {
-            var content = new StringContent(mjObject.ToString(), Encoding.UTF8, "application/json");
-            var result = await mClient.PostAsync("https://firestore.googleapis.com/v1/projects/sharezeug/databases/(default)/documents/availability", content);
+            var result = await mClient.DeleteAsync("https://firestore.googleapis.com/v1/projects/sharezeug/databases/(default)/documents/items/" + docname);
             Console.WriteLine(result.StatusCode + result.ReasonPhrase);
-            //HttpContent mContent = new HttpContent();
-
-            // HttpResponseMessage res = await mClient.PostAsync("https://firestore.googleapis.com/v1/projects/sharezeug/databases/(default)/documents/availability", "test");
         }
-
         public static void setToken()
         {
             string token = (string)Xamarin.Forms.Application.Current.Properties["token"];

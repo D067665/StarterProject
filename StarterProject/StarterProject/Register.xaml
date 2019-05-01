@@ -3,9 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StarterProject.Register"
              Title="Register">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="New" Icon="logo.png" Priority="0" Order="Primary"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
+
         <StackLayout Margin="10,10,10,10" >
-            
+
             <Label Text="Sign Up" HorizontalOptions="CenterAndExpand" FontSize="24"/>
             <Label Text="Tell Us Who You Are" HorizontalOptions="CenterAndExpand"/>
             <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="0" Margin="0,10,0,10">
@@ -49,9 +53,5 @@
             <Label x:Name="Label_AlreadySigned"  Text="Already have an account?" HorizontalOptions="CenterAndExpand"/>
             <Button x:Name="Btn_GoToSignin" Text="Sign In" TextColor="White" BackgroundColor="#7E6C94" Clicked="Btn_GoToSignin_Clicked" Margin="0,10,0,10"/>
         </StackLayout>
-
-
-
-
     </ContentPage.Content>
 </ContentPage>

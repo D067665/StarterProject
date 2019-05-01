@@ -14,7 +14,10 @@
             OpenIcon="arrow_down.png"
             CloseIcon="arrow_up.png"
     >
-   
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="New" Icon="logo.png" Priority="0" Order="Primary"/>
+    </ContentPage.ToolbarItems>
+
 
     <backdrop:SfBackdropPage.BackLayer>
         <backdrop:BackdropBackLayer>

@@ -7,7 +7,7 @@
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              Title="Login">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="New" Icon="icon.png" Priority="0" Order="Primary" Clicked="Onclick"/>
+        <ToolbarItem Text="New" Icon="logo.png" Priority="0" Order="Primary"/>
     </ContentPage.ToolbarItems>
     <StackLayout Margin="10,20,10,10" >
         <Label x:Name="Lbl_Welcome" Text=" Welcome to ShareZeug" FontSize="25" HorizontalTextAlignment="Center"/>

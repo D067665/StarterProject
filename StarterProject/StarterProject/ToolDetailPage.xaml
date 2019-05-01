@@ -6,6 +6,9 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              x:Class="StarterProject.ToolDetailPage"
              Title="Booking">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="New" Icon="logo.png" Priority="0" Order="Primary"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
       
             <StackLayout Orientation="Vertical" Margin="10,10,10,10">
