@@ -17,6 +17,7 @@ using Syncfusion.XForms.Backdrop;
 using Xamarin.Forms.Xaml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.IO;
 //using Firebase.Database;
 //using Firebase.Database.Query;
 
@@ -111,7 +112,19 @@ _client.GetAsync()
                 tool.ToolLat = Convert.ToDouble(lat);
                 var longit = document.SelectToken("fields.geolocation.geoPointValue.longitude").ToString();
                 tool.ToolLong = Convert.ToDouble(longit);
-                tool.ToolImage = "hammer.png";
+
+                //Get Photo
+                /*
+                byte[] bytes = httpclient.downloadPhoto("iQuwQUQVFX2ZzZnfLLKl");// tool.ToolDatabaseNameSub);
+                MemoryStream mstream = new MemoryStream(bytes);
+                
+                ImageSource img = ImageSource.FromStream(() => mstream);
+                Image mImage = new Image();
+                mImage.Source = img;
+                tool.img = mImage;
+                */
+                //httpclient.downloadPhoto("iQuwQUQVFX2ZzZnfLLKl");
+                tool.ToolImage = "https://firebasestorage.googleapis.com/v0/b/sharezeug.appspot.com/o/ItemsPhotos%2FiQuwQUQVFX2ZzZnfLLKl.jpg?alt=media&token=367ea86b-e7fb-4134-910b-ad47ca4a7bac";//tool.ToolDatabaseNameSub+".jpg";
                 
                 
 

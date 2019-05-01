@@ -114,6 +114,8 @@ namespace StarterProject.Droid
 			global::Syncfusion.ListView.XForms.Android.Resource.Styleable.RecyclerView_reverseLayout = global::StarterProject.Droid.Resource.Styleable.RecyclerView_reverseLayout;
 			global::Syncfusion.ListView.XForms.Android.Resource.Styleable.RecyclerView_spanCount = global::StarterProject.Droid.Resource.Styleable.RecyclerView_spanCount;
 			global::Syncfusion.ListView.XForms.Android.Resource.Styleable.RecyclerView_stackFromEnd = global::StarterProject.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
+			global::Xam.Plugin.DownloadManager.Droid.Resource.String.ApplicationName = global::StarterProject.Droid.Resource.String.ApplicationName;
+			global::Xam.Plugin.DownloadManager.Droid.Resource.String.Hello = global::StarterProject.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Animation.abc_fade_in = global::StarterProject.Droid.Resource.Animation.abc_fade_in;
 			global::Xamarin.Forms.Platform.Android.Resource.Animation.abc_fade_out = global::StarterProject.Droid.Resource.Animation.abc_fade_out;
 			global::Xamarin.Forms.Platform.Android.Resource.Animation.abc_grow_fade_in_from_bottom = global::StarterProject.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;

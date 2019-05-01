@@ -40,7 +40,7 @@ namespace StarterProject.Droid
 
 
             Firebase.FirebaseApp.InitializeApp(this); //keine ahnung ob das rein oder raus muss //Android.App.Application.Context
-
+            Plugin.FirebaseStorage.FirebaseStorage.Init(this); 
             LoadApplication(new App());
 
             //FirestoreService.Init(this); //??ß

@@ -11,12 +11,15 @@ using Plugin.Geolocator;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Newtonsoft.Json.Linq;
+using System.IO;
+using Firebase.Storage;
 
 namespace StarterProject
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TakePhotoPage : ContentPage
     {
+        static Plugin.Media.Abstractions.MediaFile file;
         public TakePhotoPage()
         {
             InitializeComponent();
@@ -52,7 +55,7 @@ namespace StarterProject
                 return;
             }
 
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
             {
                 Directory = "Sample",
                 Name = "test.jpg"
@@ -95,6 +98,7 @@ namespace StarterProject
 
             }else
             {
+
                 var locator = CrossGeolocator.Current;
                 locator.DesiredAccuracy = 50;
                 var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(1000));
@@ -105,7 +109,7 @@ namespace StarterProject
                 string jsonstring = "{'fields': {'maxDateUser': { 'timestampValue': '"+ MainDatePicker.Date.ToString("yyyy-MM-dd")+"T"+ MainDatePicker.Date.ToString("HH:mm:ss")+"Z"+ "' }, 'minDateUser': { 'timestampValue': '" + MainDatePicker2.Date.ToString("yyyy-MM-dd") + "T" + MainDatePicker2.Date.ToString("HH:mm:ss") + "Z" + "' }, 'geolocation': { 'geoPointValue': { 'latitude': " + position.Latitude+", 'longitude': "+ position.Longitude + " } }, 'price': { 'integerValue': '"+ Entry_Toolprice.Text+ "' }, 'ownerphone': { 'stringValue': ' + 496224567867' }, 'location': { 'stringValue': '"+ Entry_Toollocation.Text+ "' }, 'priceSpan': { 'stringValue': '"+ (string)Picker_PriceDetail.SelectedItem + "' }, 'description': { 'stringValue': '" + Editor_Comments.Text + "' }, 'description': { 'stringValue': '" + Entry_Toolname.Text + "' }, 'uid': { 'stringValue': '"+uid+"'}}}";
                 JObject mjObject = new JObject();
                 mjObject = JObject.Parse(jsonstring);
-                httpclient.postItem(mjObject);
+                httpclient.postItem(mjObject, file.GetStream());
 
                 await DisplayAlert("Thank you!", "You successfully uploaded your Tool to share it with the Community." + position.Latitude + position.Longitude, "Ok");
 
@@ -122,7 +126,17 @@ namespace StarterProject
 
         }
 
-
+        /*
+        public async Task<string> StoreImages(Stream imageStream)
+        {
+            var stroageImage = await new FirebaseStorage("sharezeug.appspot.com")
+                .Child("ItemsPhotos")
+                .Child("image.jpg")
+                .PutAsync(imageStream);
+            string imgurl = stroageImage;
+            return imgurl;
+        }
+        */
         private void Btn_RemoveImage_Clicked(object sender, EventArgs e)
         {
             image.Source = "camera.PNG";
