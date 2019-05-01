@@ -156,15 +156,25 @@ namespace StarterProject
 
         private async void Btn_Book_Clicked(object sender, EventArgs e)
         {
-            //Post
-            string uid = (string)Application.Current.Properties["uid"];
-            
-            string jsonstring = "{'fields': {'end': { 'timestampValue': '" + endDate.Date.ToString("yyyy-MM-dd") + "T" + endDate.Date.ToString("HH:mm:ss") + "Z" + "' }, 'start': { 'timestampValue': '" + startDate.Date.ToString("yyyy-MM-dd") + "T" + startDate.Date.ToString("HH:mm:ss") + "Z" + "' }, 'item': { 'referenceValue': '" + "projects/sharezeug/databases/(default)/documents/items/" + itemName + "' }, 'uid': { 'stringValue': '" + uid + "'}}}";
-            JObject mjObject = new JObject();
-            mjObject = JObject.Parse(jsonstring);
-            httpclient.postAvailability(mjObject);
-            await DisplayAlert("Great!", "You successfully booked the Tool from " + Label_Start.Text + "to " + Label_End.Text, "Ok");
-            await Navigation.PushAsync(new LandingPage());
+            if (string.Equals("Start", Label_Start.Text) || string.Equals("End", Label_End.Text))
+
+            {
+
+                await DisplayAlert("Info Missing", "Please fill out the Booking Range", "OK");
+
+            }
+            else
+            {
+                //Post
+                string uid = (string)Application.Current.Properties["uid"];
+
+                string jsonstring = "{'fields': {'end': { 'timestampValue': '" + endDate.Date.ToString("yyyy-MM-dd") + "T" + endDate.Date.ToString("HH:mm:ss") + "Z" + "' }, 'start': { 'timestampValue': '" + startDate.Date.ToString("yyyy-MM-dd") + "T" + startDate.Date.ToString("HH:mm:ss") + "Z" + "' }, 'item': { 'referenceValue': '" + "projects/sharezeug/databases/(default)/documents/items/" + itemName + "' }, 'uid': { 'stringValue': '" + uid + "'}}}";
+                JObject mjObject = new JObject();
+                mjObject = JObject.Parse(jsonstring);
+                httpclient.postAvailability(mjObject);
+                await DisplayAlert("Great!", "You successfully booked the Tool from " + Label_Start.Text + "to " + Label_End.Text, "Ok");
+                await Navigation.PushAsync(new LandingPage());
+            }
 
         }
     }
