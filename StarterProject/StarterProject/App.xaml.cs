@@ -18,7 +18,9 @@ namespace StarterProject
             {
                 BarBackgroundColor = Color.FromHex("#FFAD26"),
                 BarTextColor = Color.Gray,
-               
+                Icon = "logo.png",
+
+
             };
         }
 

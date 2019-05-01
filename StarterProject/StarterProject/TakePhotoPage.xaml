@@ -7,6 +7,9 @@
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              x:Class="StarterProject.TakePhotoPage"
              Title="Upload">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="New" Icon="logo.png" Priority="0" Order="Primary"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <Label Text="Share your tool with the world!"    HorizontalOptions="CenterAndExpand"  Margin="0,20,0,30" FontSize="21"/>

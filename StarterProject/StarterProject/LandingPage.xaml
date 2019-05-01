@@ -4,7 +4,9 @@
              x:Class="StarterProject.LandingPage"
              Title="Home">
 
-
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="New" Icon="logo.png" Priority="0" Order="Primary"/>
+    </ContentPage.ToolbarItems>
 
     <Grid x:Name="Grid_LandingSearch">
         <Grid.RowDefinitions>

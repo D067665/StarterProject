@@ -3,7 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StarterProject.Register"
              Title="Register">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="New" Icon="logo.png" Priority="0" Order="Primary"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
+        
         <StackLayout Margin="10,10,10,10" >
             
             <Label Text="Sign Up" HorizontalOptions="CenterAndExpand" FontSize="24"/>
