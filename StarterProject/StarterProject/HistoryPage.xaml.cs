@@ -128,8 +128,14 @@ namespace StarterProject
         }
         private void ListView_SwipeEnded(object sender, SwipeEndedEventArgs e)
         {
-            if (e.SwipeOffset > 70)
-                LoanedView.ResetSwipe();
+
+            var historyTool = (StarterProject.Model.Tool) e.ItemData;
+            
+            if (e.SwipeOffset > 70) {
+                httpclient.deleteItem(historyTool.ToolDatabaseNameSub);
+                historyListTool.ResetSwipe();
+                toolsList.Remove(historyTool);
+            }
         }
 
         private void ListView_Swiping(object sender, SwipingEventArgs e)
