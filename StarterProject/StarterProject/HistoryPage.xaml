@@ -15,12 +15,7 @@
                 <!-- <Label Text="Page 1"/>-->
 
                 <ScrollView Margin="10,10,10,0">
-                    <syncfusion:SfListView x:Name="LoanedView" 
-                                            AllowSwiping="True" SelectionMode="None" 
-                                            SwipeOffset="360" SwipeThreshold="30"
-                                            SwipeStarted="ListView_SwipeStarted" 
-                                            SwipeEnded="ListView_SwipeEnded" 
-                                            Swiping="ListView_Swiping"
+                    <syncfusion:SfListView x:Name="LoanedView"  SelectionMode="None" 
                                            AutoFitMode="Height">
                         <syncfusion:SfListView.ItemTemplate>
                             <DataTemplate>
