@@ -40,15 +40,6 @@ namespace StarterProject
             //listSpeakers.ItemsSource = vm.Speakers;
             //BindingContext = vm;
             BindingContext = tvm;
-            /*
-string token = (string)Xamarin.Forms.Application.Current.Properties["token"];
-
-HttpClient _client = new HttpClient();
-_client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("OAuth", token);
-_client.GetAsync()
-*/
-            //  FirebaseClient fbclient = new FirebaseClient("https://firestore.googleapis.com/v1/projects/sharezeug/databases/(default)/documents/");
-            //  fbclient.Child("items").
 
             loadItems();
             
@@ -61,7 +52,6 @@ _client.GetAsync()
             string resAvailability = await httpclient.getFromFirebaseAvailability();
             JObject jsonAv = JObject.Parse(resAvailability);
             JObject json = JObject.Parse(res);
-            // Console.WriteLine(res);
             Console.WriteLine("Json: " + json);
 
             List<Werkzeug> objWerkzeugliste = new List<Werkzeug>();
@@ -113,72 +103,12 @@ _client.GetAsync()
                 var longit = document.SelectToken("fields.geolocation.geoPointValue.longitude").ToString();
                 tool.ToolLong = Convert.ToDouble(longit);
 
-                //Get Photo
-                /*
-                byte[] bytes = httpclient.downloadPhoto("iQuwQUQVFX2ZzZnfLLKl");// tool.ToolDatabaseNameSub);
-                MemoryStream mstream = new MemoryStream(bytes);
-                
-                ImageSource img = ImageSource.FromStream(() => mstream);
-                Image mImage = new Image();
-                mImage.Source = img;
-                tool.img = mImage;
-                */
-                //httpclient.downloadPhoto("iQuwQUQVFX2ZzZnfLLKl");
-                tool.ToolImage = "https://firebasestorage.googleapis.com/v0/b/sharezeug.appspot.com/o/ItemsPhotos%2FiQuwQUQVFX2ZzZnfLLKl.jpg?alt=media&token=367ea86b-e7fb-4134-910b-ad47ca4a7bac";//tool.ToolDatabaseNameSub+".jpg";
-                
-                
+                tool.ToolImage = "https://firebasestorage.googleapis.com/v0/b/sharezeug.appspot.com/o/ItemsPhotos%2F"+ tool.ToolDatabaseNameSub+ ".jpg?alt=media";//tool.ToolDatabaseNameSub+".jpg";
 
-                //Werkzeug objWerkzeug = new Werkzeug();
-                //objWerkzeug.Description = (string) document.SelectToken("fields.description.stringValue").ToString();
-                //objWerkzeug.Location = (string)document.SelectToken("fields.location.stringValue").ToString();
-
-                //objWerkzeugliste.Add(objWerkzeug);
                 toolsList.Add(tool);
-                Console.WriteLine("Werkzeug:");
-                Console.WriteLine(tool.ToolDescription + tool.ToolLocation);
-                Console.WriteLine("--------");
-                Console.WriteLine("WerkzeugName " + tool.ToolDatabaseNameSub);
+
             }
-            // ObjWerkzeugListe = JsonConvert.DeserializeObject<WerkzeugListe>(res);
-           listTools.ItemsSource = toolsList;
-            
-
-           /* var toolIdTest = "projects/sharezeug/databases/(default)/documents/items/zQjXZGR8xqiJK0fD2QQ2";
-            var toolIdTestSub = toolIdTest.Substring(55);
-            var compareTo = availability.ElementAt(0).toolRef;
-            var compareToSub = toolIdTest.Substring(55);
-            Console.WriteLine("compareToSub:" + compareToSub);
-            var compareToFalse = availability.ElementAt(1).toolRef;
-            var compareToFalseSub = compareToFalse.Substring(55);
-
-            if (toolIdTestSub.Equals(compareToSub))
-            {
-                Console.WriteLine("makes sense");
-            }
-            if (toolIdTestSub.Equals(compareToFalseSub))
-            {
-                Console.WriteLine("makes no sense");
-            }
-            ObservableCollection<Availability> availabilityPerTool = new ObservableCollection<Availability>();
-
-            //das erste hat ein leerzeichen vor der id, das zweite nicht, versuch drittes anlegen
-            foreach (Availability av in availability)
-            {
-                var toolNameRef = av.toolRef;
-                Console.WriteLine("toolNameRef:" +toolNameRef);
-                var toolNameRefSub = toolNameRef.Substring(55);
-                if (toolNameRefSub.Equals(toolIdTestSub))
-                {
-                    availabilityPerTool.Add(av);
-                }
-                else
-                {
-                    Console.WriteLine("no match");
-                }
-            }*/
-
-            
-            
+           listTools.ItemsSource = toolsList;         
 
         }
 
@@ -213,8 +143,6 @@ _client.GetAsync()
 
         private void Btn_Search_Clicked(object sender, EventArgs e)
         {
-            //var container = BindingContext as ToolViewModel;
-           // var tools = container.Tools;
             
             var searchResults =  (IEnumerable<Tool>)listTools.ItemsSource;
             string searchValueToolDescription = SfEntry_ToolType.Text ?? "";

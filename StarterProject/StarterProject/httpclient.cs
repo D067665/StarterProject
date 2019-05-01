@@ -77,8 +77,8 @@ namespace StarterProject
             //Photo
             var stroageImage = await new FirebaseStorage("sharezeug.appspot.com")
             .Child("ItemsPhotos")
-            .Child(name+".jpg")
-            .PutAsync(imageStream);
+            .Child(name + ".jpg")
+            .PutAsync(imageStream,new System.Threading.CancellationToken(),"image/jpeg");
             
 
 

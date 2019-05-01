@@ -64,7 +64,7 @@ namespace StarterProject
             if (file == null)
                 return;
 
-            await DisplayAlert("File Location", file.Path, "OK");
+            //await DisplayAlert("File Location", file.Path, "OK");
 
             image.Source = ImageSource.FromStream(() =>
             {
@@ -87,9 +87,6 @@ namespace StarterProject
 
         private async void Btn_Publish_Clicked(object sender, EventArgs e)
         {
-
-
-
             if(string.IsNullOrEmpty(Entry_Toolname.Text) || string.IsNullOrEmpty(Entry_Toollocation.Text) || string.IsNullOrEmpty(Entry_Toolprice.Text) || string.IsNullOrEmpty(Entry_Ownerphone.Text)
                 || Picker_PriceDetail.SelectedIndex == -1  )
             {
@@ -115,28 +112,11 @@ namespace StarterProject
 
                 await Navigation.PushAsync(new LandingPage());
             }
-            
-
-
-
-
-           /* Console.WriteLine("Lat: " + position.Latitude + "Long: " + position.Longitude);
-            await DisplayAlert("Thank you!", "You successfully uploaded your Tool to share it with the Community." + position.Latitude + position.Longitude, "Ok");
-            await Navigation.PushAsync(new LandingPage());*/
 
         }
 
-        /*
-        public async Task<string> StoreImages(Stream imageStream)
-        {
-            var stroageImage = await new FirebaseStorage("sharezeug.appspot.com")
-                .Child("ItemsPhotos")
-                .Child("image.jpg")
-                .PutAsync(imageStream);
-            string imgurl = stroageImage;
-            return imgurl;
-        }
-        */
+        
+        
         private void Btn_RemoveImage_Clicked(object sender, EventArgs e)
         {
             image.Source = "camera.PNG";
