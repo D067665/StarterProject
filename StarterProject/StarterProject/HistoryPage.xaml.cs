@@ -21,18 +21,19 @@ namespace StarterProject
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class HistoryPage : Xamarin.Forms.TabbedPage
     {
-        ToolViewModel tvm;
+        //ToolViewModel tvm;
         ObservableCollection<Tool> toolsList;
         List<Availability> availabilityList;
         ObservableCollection<Tool> showAvailability;
+       
 
         public HistoryPage ()
 		{
 			InitializeComponent ();
             this.On<Xamarin.Forms.PlatformConfiguration.Android>().SetIsSwipePagingEnabled(false);
-            tvm = new ToolViewModel();
+            //tvm = new ToolViewModel();
 
-            BindingContext = tvm;
+           // BindingContext = tvm;
             
             loadItems();
 
@@ -40,22 +41,21 @@ namespace StarterProject
 
         private async void loadItems()
         {
+            //get items and availabilities
             string res = await httpclient.getFromFirebase();
             string resAvailability = await httpclient.getFromFirebaseAvailability();
             JObject json = JObject.Parse(res);
             JObject jsonAv = JObject.Parse(resAvailability);
-            // Console.WriteLine(res);
-            Console.WriteLine("Json: " + json);
-
-            List<Werkzeug> objWerkzeugliste = new List<Werkzeug>();
+            
             toolsList = new ObservableCollection<Tool>();
             availabilityList = new List<Availability>();
             showAvailability = new ObservableCollection<Tool>();
-
+            
             IEnumerable<JToken> documents = json.SelectTokens("documents[*]");
             IEnumerable<JToken> documentsAv = jsonAv.SelectTokens("documents[*]");
             string uid = (string) Xamarin.Forms.Application.Current.Properties["uid"];
 
+            //get tools that you loaned
             foreach (JToken document in documentsAv)
             {
                 Availability availability = new Availability();
@@ -73,8 +73,8 @@ namespace StarterProject
 
             }
 
-
-                foreach (JToken document in documents)
+            //get tools that you published
+            foreach (JToken document in documents)
             {
 
                 Tool tool = new Tool();
@@ -111,12 +111,15 @@ namespace StarterProject
                 {
                     if (avail.toolRef == tool.ToolDatabaseNameSub)
                     {
+
                         showAvailability.Add(tool);
+                       
                     }
                 }
 
             }
 
+            //save for display
             historyListTool.ItemsSource = toolsList;
             LoanedView.ItemsSource = showAvailability;
         }
@@ -128,8 +131,15 @@ namespace StarterProject
         }
         private void ListView_SwipeEnded(object sender, SwipeEndedEventArgs e)
         {
-            if (e.SwipeOffset > 70)
-                LoanedView.ResetSwipe();
+
+            var historyTool = (StarterProject.Model.Tool) e.ItemData;
+            
+            //delete item after swipe
+            if (e.SwipeOffset > 70) {
+                httpclient.deleteItem(historyTool.ToolDatabaseNameSub);
+                historyListTool.ResetSwipe();
+                toolsList.Remove(historyTool);
+            }
         }
 
         private void ListView_Swiping(object sender, SwipingEventArgs e)

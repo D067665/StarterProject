@@ -25,8 +25,8 @@ namespace StarterProject
             Label_ToolLocation.Text = ToolLocation;
             Label_ToolPrice.Text = CombinedPrice;
             Image_Tool.Source = ToolImage;
-            Label_Startdate.Text = MinUserDate.ToString("dd/MM/yyy");
-            Label_Enddate.Text = MaxUserDate.ToString("dd/MM/yyyy");
+            Label_Startdate.Text = "From " + MinUserDate.ToString("dd/MM/yyyy");
+            Label_Enddate.Text = "till " + MaxUserDate.ToString("dd/MM/yyyy");
             MapDetail.MoveToRegion(
               MapSpan.FromCenterAndRadius(
                   new Position(ToolLat, ToolLong), Distance.FromKilometers(1)));
@@ -56,13 +56,6 @@ namespace StarterProject
             Navigation.PushAsync(new BookingPage(ToolDescription, ToolLocation, ToolPrice, ToolImage, ToolDatabaseNameSub, MinUserDate, MaxUserDate));
 
         }
-
-
-        /* public ToolDetailPage()
-{
-
-
-}*/
 
     }
 }

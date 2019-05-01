@@ -15,12 +15,7 @@
                 <!-- <Label Text="Page 1"/>-->
 
                 <ScrollView Margin="10,10,10,0">
-                    <syncfusion:SfListView x:Name="LoanedView" 
-                                            AllowSwiping="True" SelectionMode="None" 
-                                            SwipeOffset="360" SwipeThreshold="30"
-                                            SwipeStarted="ListView_SwipeStarted" 
-                                            SwipeEnded="ListView_SwipeEnded" 
-                                            Swiping="ListView_Swiping"
+                    <syncfusion:SfListView x:Name="LoanedView"  SelectionMode="None" 
                                            AutoFitMode="Height">
                         <syncfusion:SfListView.ItemTemplate>
                             <DataTemplate>
@@ -31,7 +26,8 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                 </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="20*"/>
                                 <ColumnDefinition Width="10*"/>
@@ -46,7 +42,8 @@
                             <Label Text="{Binding ToolLocation}"  Grid.Column="2" Grid.Row="1"/>
 
                             <Image Source="price.png" Grid.Column="1" Grid.Row="2"/>
-                            <Label Text="{Binding ToolPrice}" Grid.Column="2" Grid.Row="2"/>
+                            <Label x:Name="test" Text="{Binding CombinedPrice}" Grid.Column="2" Grid.Row="2"/>
+                           
                             </Grid>
                                     </ViewCell.View>
                                 </ViewCell>

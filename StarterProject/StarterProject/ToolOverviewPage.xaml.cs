@@ -28,21 +28,21 @@ namespace StarterProject
     {
 
         //SpeakerViewModel vm;
-        ToolViewModel tvm;
+        //ToolViewModel tvm;
         ObservableCollection<Tool> toolsList;
 
 
         public ToolOverviewPage ()
 		{
 			InitializeComponent();
-            tvm = new ToolViewModel();
+           // tvm = new ToolViewModel();
             //vm = new SpeakerViewModel();
             //listSpeakers.ItemsSource = vm.Speakers;
             //BindingContext = vm;
             BindingContext = tvm;
 
             loadItems();
-            
+
 
         }
 
@@ -54,7 +54,7 @@ namespace StarterProject
             JObject json = JObject.Parse(res);
             Console.WriteLine("Json: " + json);
 
-            List<Werkzeug> objWerkzeugliste = new List<Werkzeug>();
+
             toolsList = new ObservableCollection<Tool>();
 
             ObservableCollection <Availability> availability = new ObservableCollection<Availability>();
@@ -62,38 +62,24 @@ namespace StarterProject
             IEnumerable<JToken> documents = json.SelectTokens("documents[*]");
             IEnumerable<JToken> documentsAv = jsonAv.SelectTokens("documents[*]");
 
-            
-           /* foreach (JToken documentAv in documentsAv)
-            {
-                Availability availabilityTool = new Availability();
-                availabilityTool.startDate = DateTime.Parse((string)documentAv.SelectToken("fields.start.timestampValue").ToString());
-                availabilityTool.endDate = DateTime.Parse((string)documentAv.SelectToken("fields.end.timestampValue").ToString());
-                availabilityTool.toolRef = (string)documentAv.SelectToken("fields.item.referenceValue").ToString();
-                Console.WriteLine("ToolRef: " + availabilityTool.toolRef);
-                availability.Add(availabilityTool);
-                Console.WriteLine("WerkzeugAvail:");
-                Console.WriteLine("Avail: " + availabilityTool.startDate + availabilityTool.endDate);
-                Console.WriteLine("--------");
-                
-            }
-            Console.WriteLine(availability);*/
 
-           
+
+
             foreach (JToken document in documents)
             {
-               
+
                 Tool tool = new Tool();
                 tool.ToolDescription = (string)document.SelectToken("fields.description.stringValue").ToString();
                 tool.ToolLocation = (string)document.SelectToken("fields.location.stringValue").ToString();
                 var dataBaseName = (string)document.SelectToken("name").ToString();
-                tool.ToolDatabaseNameSub = dataBaseName.Substring(55);               
+                tool.ToolDatabaseNameSub = dataBaseName.Substring(55);
                 tool.ToolPriceSpan = (string)document.SelectToken("fields.priceSpan.stringValue").ToString();
                 Console.WriteLine(tool.ToolDescription + tool.ToolLocation + tool.ToolPriceSpan);
                 tool.OwnerPhone = (string)document.SelectToken("fields.ownerphone.stringValue").ToString();
                 Console.WriteLine(tool.ToolDescription + tool.ToolLocation + tool.ToolPriceSpan + tool.OwnerPhone);
                 var minDateUser = document.SelectToken("fields.minDateUser.timestampValue").ToString();
                 tool.minDateUser = DateTime.Parse(minDateUser);
-                
+
                 var maxDateUser = document.SelectToken("fields.maxDateUser.timestampValue").ToString();
                 tool.maxDateUser = DateTime.Parse(maxDateUser);
                 var price = document.SelectToken("fields.price.integerValue").ToString();
@@ -108,7 +94,7 @@ namespace StarterProject
                 toolsList.Add(tool);
 
             }
-           listTools.ItemsSource = toolsList;         
+           listTools.ItemsSource = toolsList;
 
         }
 
@@ -119,20 +105,7 @@ namespace StarterProject
 
         }
 
-        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var container = BindingContext as ToolViewModel;
-            
-            listTools.BeginRefresh(); 
 
-            if (string.IsNullOrWhiteSpace(e.NewTextValue))
-                listTools.ItemsSource = container.Tools;
-            else
-                listTools.ItemsSource = container.Tools.Where(i => i.ToolDescription.Contains(e.NewTextValue));
-
-            listTools.EndRefresh();
-
-        }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
@@ -143,13 +116,13 @@ namespace StarterProject
 
         private void Btn_Search_Clicked(object sender, EventArgs e)
         {
-            
+
             var searchResults =  (IEnumerable<Tool>)listTools.ItemsSource;
             string searchValueToolDescription = SfEntry_ToolType.Text ?? "";
             var searchValueToolLocation = SfEntry_ToolLocation.Text ?? "";
-            
+
             var searchValueToolPrice = SfEntry_ToolPrice.Text ?? "";
-           
+
 
             int searchValueToolPriceInt = 0;
             if (searchValueToolPrice.Equals(""))
@@ -172,8 +145,8 @@ namespace StarterProject
             listTools.EndRefresh();
             IsBackLayerRevealed = Convert.ToBoolean("False");
             int count = searchResults.Count<Tool>();
-            
-            //var count = (listTools.ItemsSource as List<Tool>).Count;
+
+
            if (count == 0)
             {
                 Lbl_ToolSearchIntro.Text = "Unfortunatly, there were no matches";
@@ -183,11 +156,12 @@ namespace StarterProject
             {
                 Lbl_ToolSearchIntro.Text = "Find the Tool you need";
             }
-            
+
+
 
         }
 
-        
+
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {

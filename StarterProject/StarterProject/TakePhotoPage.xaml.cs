@@ -26,11 +26,6 @@ namespace StarterProject
             Picker_PriceDetail.Items.Add("per Day");
             Picker_PriceDetail.Items.Add("per Week");
             Picker_PriceDetail.Items.Add("per Month");
-
-
-
-
-
         }
         private void MainDatePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
@@ -40,10 +35,6 @@ namespace StarterProject
         {
             // MainLabel.Text = e.NewDate.ToLongDateString();
         }
-
-
-
-
 
         private async void Btn_TakePhoto_Clicked(object sender, EventArgs e)
         {
@@ -75,6 +66,7 @@ namespace StarterProject
 
 
 
+
         }
 
         private void Calendar_SelectionChanged(object sender, Syncfusion.SfCalendar.XForms.SelectionChangedEventArgs e)
@@ -87,13 +79,22 @@ namespace StarterProject
 
         private async void Btn_Publish_Clicked(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(Entry_Toolname.Text) || string.IsNullOrEmpty(Entry_Toollocation.Text) || string.IsNullOrEmpty(Entry_Toolprice.Text) || string.IsNullOrEmpty(Entry_Ownerphone.Text)
+
+
+
+            var dateCompare = DateTime.Compare(MainDatePicker.Date, MainDatePicker2.Date);
+            if (string.IsNullOrEmpty(Entry_Toolname.Text) || string.IsNullOrEmpty(Entry_Toollocation.Text) || string.IsNullOrEmpty(Entry_Toolprice.Text) || string.IsNullOrEmpty(Entry_Ownerphone.Text)
                 || Picker_PriceDetail.SelectedIndex == -1  )
             {
 
                 await DisplayAlert("Info Missing", "Please fill out the missing information", "OK");
 
-            }else
+            }else if(dateCompare>0){
+
+                await DisplayAlert("Info Wrong", "Your Dates are mixed up", "OK");
+
+            }
+            else
             {
 
                 var locator = CrossGeolocator.Current;
@@ -108,15 +109,15 @@ namespace StarterProject
                 mjObject = JObject.Parse(jsonstring);
                 httpclient.postItem(mjObject, file.GetStream());
 
-                await DisplayAlert("Thank you!", "You successfully uploaded your Tool to share it with the Community." + position.Latitude + position.Longitude, "Ok");
+                await DisplayAlert("Thank you!", "You successfully uploaded your Tool to share it with the Community.", "Ok");
 
                 await Navigation.PushAsync(new LandingPage());
             }
 
         }
 
-        
-        
+
+
         private void Btn_RemoveImage_Clicked(object sender, EventArgs e)
         {
             image.Source = "camera.PNG";
