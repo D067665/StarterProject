@@ -52,7 +52,7 @@ namespace StarterProject
 
             if (file == null)
                 return;
-             /*
+             
             await DisplayAlert("File Location", file.Path, "OK");
 
             image.Source = ImageSource.FromStream(() =>
@@ -60,7 +60,7 @@ namespace StarterProject
                 var stream = file.GetStream();
                 return stream;
             });
-            */
+            
 
 
 
