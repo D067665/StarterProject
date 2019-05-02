@@ -47,7 +47,7 @@ namespace StarterProject
             }
             catch (Exception f)
             {
-                DependencyService.Get<IToast>().ShortAlert("Überprüfe deine Eingaben!");
+                DependencyService.Get<IToast>().ShortAlert("Check your input!");
                 Console.WriteLine("Exception: " + f);
             }
         }

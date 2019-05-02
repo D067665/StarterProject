@@ -25,20 +25,20 @@ namespace StarterProject
                     string token = await DependencyService.Get<IRegister>().registerWithEmailPassword(Entry_Email.Text, Entry_Password.Text);
                     Console.WriteLine(token);
                     Application.Current.Properties["token"] = token;
-                    DependencyService.Get<IToast>().ShortAlert("Erfolgreich registriert!");
+                    DependencyService.Get<IToast>().ShortAlert("Sign up was successful!");
                     httpclient.setToken();
                     Navigation.PushAsync(new LandingPage());
 
                 }
                 catch (Exception ex)
                 {
-                    DependencyService.Get<IToast>().LongAlert("Da ist wohl etwas schief gelaufen: " + ex.Message);
+                    DependencyService.Get<IToast>().LongAlert("Error occurred: " + ex.Message);
                     Console.WriteLine(ex.Message);
                 }
             }
             else
             {
-                DependencyService.Get<IToast>().ShortAlert("Passwörter stimmen nicht überein!");
+                DependencyService.Get<IToast>().ShortAlert("Passwords do not match!");
             }
 
         }
