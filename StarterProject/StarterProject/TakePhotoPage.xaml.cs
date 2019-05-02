@@ -55,8 +55,6 @@ namespace StarterProject
             if (file == null)
                 return;
 
-            //await DisplayAlert("File Location", file.Path, "OK");
-
             image.Source = ImageSource.FromStream(() =>
             {
                 var stream = file.GetStream();
@@ -83,6 +81,7 @@ namespace StarterProject
 
 
             var dateCompare = DateTime.Compare(MainDatePicker.Date, MainDatePicker2.Date);
+           string imgSource = image.Source.ToString();
             if (string.IsNullOrEmpty(Entry_Toolname.Text) || string.IsNullOrEmpty(Entry_Toollocation.Text) || string.IsNullOrEmpty(Entry_Toolprice.Text) || string.IsNullOrEmpty(Entry_Ownerphone.Text)
                 || Picker_PriceDetail.SelectedIndex == -1  )
             {
@@ -94,6 +93,10 @@ namespace StarterProject
                 await DisplayAlert("Info Wrong", "Your Dates are mixed up", "OK");
 
             }
+            else if (imgSource == "File: camera.PNG")
+            {
+                await DisplayAlert("Info Wrong", "You need to upload a picture", "OK");
+            }
             else
             {
 
@@ -104,7 +107,7 @@ namespace StarterProject
                 Console.WriteLine("los geht der Post");
                 string uid = (string)Application.Current.Properties["uid"];
     //            string test = MainDatePicker.Date.ToString("yyyy-MM-dd") + "T" + MainDatePicker.Date.ToString("HH:mm:ss") + "Z";
-                string jsonstring = "{'fields': {'maxDateUser': { 'timestampValue': '"+ MainDatePicker.Date.ToString("yyyy-MM-dd")+"T"+ MainDatePicker.Date.ToString("HH:mm:ss")+"Z"+ "' }, 'minDateUser': { 'timestampValue': '" + MainDatePicker2.Date.ToString("yyyy-MM-dd") + "T" + MainDatePicker2.Date.ToString("HH:mm:ss") + "Z" + "' }, 'geolocation': { 'geoPointValue': { 'latitude': " + position.Latitude+", 'longitude': "+ position.Longitude + " } }, 'price': { 'integerValue': '"+ Entry_Toolprice.Text+ "' }, 'ownerphone': { 'stringValue': ' + 496224567867' }, 'location': { 'stringValue': '"+ Entry_Toollocation.Text+ "' }, 'priceSpan': { 'stringValue': '"+ (string)Picker_PriceDetail.SelectedItem + "' }, 'description': { 'stringValue': '" + Editor_Comments.Text + "' }, 'description': { 'stringValue': '" + Entry_Toolname.Text + "' }, 'uid': { 'stringValue': '"+uid+"'}}}";
+                string jsonstring = "{'fields': {'maxDateUser': { 'timestampValue': '"+ MainDatePicker2.Date.ToString("yyyy-MM-dd")+"T"+ MainDatePicker2.Date.ToString("HH:mm:ss")+"Z"+ "' }, 'minDateUser': { 'timestampValue': '" + MainDatePicker.Date.ToString("yyyy-MM-dd") + "T" + MainDatePicker.Date.ToString("HH:mm:ss") + "Z" + "' }, 'geolocation': { 'geoPointValue': { 'latitude': " + position.Latitude+", 'longitude': "+ position.Longitude + " } }, 'price': { 'integerValue': '"+ Entry_Toolprice.Text+ "' }, 'ownerphone': { 'stringValue': ' + 496224567867' }, 'location': { 'stringValue': '"+ Entry_Toollocation.Text+ "' }, 'priceSpan': { 'stringValue': '"+ (string)Picker_PriceDetail.SelectedItem + "' }, 'description': { 'stringValue': '" + Editor_Comments.Text + "' }, 'description': { 'stringValue': '" + Entry_Toolname.Text + "' }, 'uid': { 'stringValue': '"+uid+"'}}}";
                 JObject mjObject = new JObject();
                 mjObject = JObject.Parse(jsonstring);
                 httpclient.postItem(mjObject, file.GetStream());
@@ -128,8 +131,6 @@ namespace StarterProject
         private void Picker_PriceDetail_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedItem = Picker_PriceDetail.Items[Picker_PriceDetail.SelectedIndex];
-
-
         }
     }
 }
