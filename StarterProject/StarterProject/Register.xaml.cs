@@ -27,7 +27,7 @@ namespace StarterProject
                     Application.Current.Properties["token"] = token;
                     DependencyService.Get<IToast>().ShortAlert("Sign up was successful!");
                     httpclient.setToken();
-                    Navigation.PushAsync(new LandingPage());
+                    await Navigation.PushAsync(new LandingPage());
 
                 }
                 catch (Exception ex)

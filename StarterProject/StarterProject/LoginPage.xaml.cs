@@ -43,7 +43,7 @@ namespace StarterProject
                 Application.Current.Properties["token"] = token;
 
                 httpclient.setToken();
-                Navigation.PushAsync(new LandingPage());
+                await Navigation.PushAsync(new LandingPage());
             }
             catch (Exception f)
             {
